@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.settings;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -23,4 +23,5 @@ public class RobotMap {
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
+  public static int USB_GAMEPAD = 0;
 }
