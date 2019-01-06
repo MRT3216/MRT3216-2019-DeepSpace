@@ -32,5 +32,9 @@ public class RobotMap {
 
   //PCM Ports
   public static int PANEL_RELEASE_C = 0;
-  public static int PANEL_RELEASE_O = 1; 
+  public static int PANEL_RELEASE_O = 1;
+  public static int FRONT_LIFT_C = 2;
+  public static int FRONT_LIFT_O = 3;
+  public static int REAR_LIFT_C = 4;
+  public static int REAR_LIFT_O = 5; 
 }
