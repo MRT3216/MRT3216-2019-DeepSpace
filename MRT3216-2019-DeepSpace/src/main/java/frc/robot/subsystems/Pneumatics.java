@@ -21,14 +21,16 @@ public class Pneumatics extends Subsystem {
   private final DoubleSolenoid.Value forward = DoubleSolenoid.Value.kForward; //forward position and open
 	private final DoubleSolenoid.Value reverse = DoubleSolenoid.Value.kReverse; //reversed position and closed
 
-  private DoubleSolenoid panel_release;
-  private DoubleSolenoid front_lift;
-  private DoubleSolenoid rear_lift;
+  private DoubleSolenoid panelRelease;
+  private DoubleSolenoid frontLift;
+  private DoubleSolenoid rearLift;
+  private DoubleSolenoid intakeArm;
 
   public Pneumatics() {
-    panel_release = new DoubleSolenoid(RobotMap.PANEL_RELEASE_O, RobotMap.PANEL_RELEASE_C);
-    front_lift = new DoubleSolenoid(RobotMap.FRONT_LIFT_O, RobotMap.FRONT_LIFT_C);
-    rear_lift = new DoubleSolenoid(RobotMap.REAR_LIFT_O, RobotMap.REAR_LIFT_C);
+    panelRelease = new DoubleSolenoid(RobotMap.PANEL_RELEASE_O, RobotMap.PANEL_RELEASE_C);
+    frontLift = new DoubleSolenoid(RobotMap.FRONT_LIFT_O, RobotMap.FRONT_LIFT_C);
+    rearLift = new DoubleSolenoid(RobotMap.REAR_LIFT_O, RobotMap.REAR_LIFT_C);
+    intakeArm = new DoubleSolenoid(RobotMap.INTAKE_ARM_O, RobotMap.INTAKE_ARM_C);
     initPneumatics();
   }
 
@@ -43,39 +45,39 @@ public class Pneumatics extends Subsystem {
   */
   public void releasePanel(boolean release) {
     if(release) {
-      if (panel_release.get() != forward) {
-        panel_release.set(forward);
+      if (panelRelease.get() != forward) {
+        panelRelease.set(forward);
       }
     }
     else {
-      if (panel_release.get() != reverse) {
-        panel_release.set(reverse);
+      if (panelRelease.get() != reverse) {
+        panelRelease.set(reverse);
       }
     }
   }
 
 public void raiseFront(boolean raise) {
   if(raise) {
-    if (front_lift.get() != forward) {
-      front_lift.set(forward);
+    if (frontLift.get() != forward) {
+      frontLift.set(forward);
     }
   }
   else {
-    if (front_lift.get() != reverse) {
-      front_lift.set(reverse);
+    if (frontLift.get() != reverse) {
+      frontLift.set(reverse);
     }
   }
 }
 
 public void raiseRear(boolean raise) {
   if(raise) {
-    if (rear_lift.get() != forward) {
-      rear_lift.set(forward);
+    if (rearLift.get() != forward) {
+      rearLift.set(forward);
     }
   }
   else {
-    if (rear_lift.get() != reverse) {
-      rear_lift.set(reverse);
+    if (rearLift.get() != reverse) {
+      rearLift.set(reverse);
     }
   }
 }

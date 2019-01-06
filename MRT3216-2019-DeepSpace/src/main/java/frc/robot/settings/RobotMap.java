@@ -36,5 +36,7 @@ public class RobotMap {
   public static int FRONT_LIFT_C = 2;
   public static int FRONT_LIFT_O = 3;
   public static int REAR_LIFT_C = 4;
-  public static int REAR_LIFT_O = 5; 
+  public static int REAR_LIFT_O = 5;
+  public static int INTAKE_ARM_C = 6;
+  public static int INTAKE_ARM_O = 7;
 }
