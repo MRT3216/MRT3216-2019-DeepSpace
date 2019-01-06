@@ -24,4 +24,13 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
   public static int USB_GAMEPAD = 0;
+
+  //Motor Controller Ports
+  public static int DRIVETRAIN_LEFT_MOTOR = 0;
+  public static int DRIVETRAIN_RIGHT_MOTOR = 1;
+  public static int ELEVATOR_MOTOR = 2;
+
+  //PCM Ports
+  public static int PANEL_RELEASE_C = 0;
+  public static int PANEL_RELEASE_O = 1; 
 }
