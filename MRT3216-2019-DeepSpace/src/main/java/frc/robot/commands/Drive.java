@@ -47,8 +47,8 @@ public class Drive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double throttle = m_oi.getLeftY();
-    double turn = m_oi.getRightX();
+    //double throttle = m_oi.getLeftY();
+    //double turn = m_oi.getRightX();
     /*
     if (imu != null) {
       if (turn == 0 && !hasHeading && Math.abs(imu.getAngleZ() - angleOld) < RobotMap.TURN_RATE_THRESHOLD) {
