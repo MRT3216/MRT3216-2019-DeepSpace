@@ -23,4 +23,8 @@ public class Constants {
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
+
+  //Driving Constants
+  public static double ACCELERATION_MAX = 3.0; //TODO: Calculate new max for new robot
+  public static double DRIVESTRAIGHT_KP = 0.01; //TODO: Tune new robot
 }
