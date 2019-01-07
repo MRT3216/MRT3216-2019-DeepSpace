@@ -24,7 +24,7 @@ import frc.robot.subsystems.Elevator;
  */
 public class Robot extends TimedRobot {
   public static Drivetrain m_Drivetrain = new Drivetrain();
-  public static Elevator mElevator = new Elevator();
+  public static Elevator m_Elevator = new Elevator();
   public static OI m_oi;
 
   Command m_autonomousCommand;

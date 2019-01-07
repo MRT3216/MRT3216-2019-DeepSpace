@@ -3,9 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import frc.robot.Robot;
 import frc.robot.settings.*;
-import frc.robot.OI;
 
 /**
  *
@@ -13,7 +11,6 @@ import frc.robot.OI;
 public class Elevator extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	OI m_oi = Robot.m_oi;
 	private Talon motor;
 
 	public Elevator() {

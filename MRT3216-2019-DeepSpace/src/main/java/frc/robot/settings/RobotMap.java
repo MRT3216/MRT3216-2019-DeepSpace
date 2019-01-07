@@ -26,17 +26,18 @@ public class RobotMap {
   public static int USB_GAMEPAD = 0;
 
   //Motor Controller Ports
-  public static int DRIVETRAIN_LEFT_MOTOR = 0;
-  public static int DRIVETRAIN_RIGHT_MOTOR = 1;
-  public static int ELEVATOR_MOTOR = 2;
+  public static final int DRIVETRAIN_LEFT_MOTOR = 0;
+  public static final int DRIVETRAIN_RIGHT_MOTOR = 1;
+  public static final int ELEVATOR_MOTOR = 2;
+  public static final int INTAKE_MOTOR = 3;
 
   //PCM Ports
-  public static int PANEL_RELEASE_C = 0;
-  public static int PANEL_RELEASE_O = 1;
-  public static int FRONT_LIFT_C = 2;
-  public static int FRONT_LIFT_O = 3;
-  public static int REAR_LIFT_C = 4;
-  public static int REAR_LIFT_O = 5;
-  public static int INTAKE_ARM_C = 6;
-  public static int INTAKE_ARM_O = 7;
+  public static final int PANEL_RELEASE_C = 0;
+  public static final int PANEL_RELEASE_O = 1;
+  public static final int FRONT_LIFT_C = 2;
+  public static final int FRONT_LIFT_O = 3;
+  public static final int REAR_LIFT_C = 4;
+  public static final int REAR_LIFT_O = 5;
+  public static final int INTAKE_ARM_C = 6;
+  public static final int INTAKE_ARM_O = 7;
 }
