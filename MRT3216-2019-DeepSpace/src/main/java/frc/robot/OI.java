@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+
 import frc.robot.settings.RobotMap;
 import frc.robot.settings.*;
 /**
@@ -41,16 +42,20 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-  public Gamepad gamepad;
+  private Gamepad gamepad;
+  private ControlStick controlStick
 
 
   public OI() {
 
     gamepad = new Gamepad(RobotMap.USB_GAMEPAD);
+    controlStick = new controlStick(RobotMap.USB_CONTROL_STICK)
+    //controlStick.Trigger.whenPressed(new Run_Intake);
 
 
   }
 
+  // Gamepad Functions
   public double getLeftY() {
 		double joystickValue = gamepad.getRawAxis(Gamepad.LEFT_JOY_Y_AXIS);
 		//joystickValue = checkDeadZone(joystickValue);
@@ -66,7 +71,15 @@ public class OI {
 		joystickValue = scaleJoystick(joystickValue);
 		// log.add("getRightX (" + joystickValue + ")", LOG_LEVEL);
 		return joystickValue;
-	}
+  }
+  
+  // Control Stick Functions
+	public double getStickY() {
+		double joystickValue = controlStick.getRawAxis(ControlStick.JOYSTICK_Y_AXIS);
+		// TODO - add checkDeadZone (if needed)
+		//log.add("StickY: " + joystickValue, LOG_LEVEL);
+		return joystickValue;
+	} 
   
 
   private double scaleJoystick(double joystickValue) {
