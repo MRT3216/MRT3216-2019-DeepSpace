@@ -7,6 +7,7 @@
 
 package frc.robot;
 import frc.robot.settings.RobotMap;
+import frc.robot.settings.*;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -49,4 +50,43 @@ public class OI {
 
 
   }
+
+  public double getLeftY() {
+		double joystickValue = gamepad.getRawAxis(Gamepad.LEFT_JOY_Y_AXIS);
+		//joystickValue = checkDeadZone(joystickValue);
+		joystickValue = scaleJoystick(joystickValue);
+		// log.add("getLeftY (" + joystickValue + ")", LOG_LEVEL);
+		//log.add("Deadzone = " + RobotMap.JOYSTICK_DEADZONE, LOG_LEVEL);
+		return joystickValue;
+  }
+  
+  public double getRightX() {
+		double joystickValue = gamepad.getRawAxis(Gamepad.RIGHT_JOY_X_AXIS);
+		//joystickValue = checkDeadZone(joystickValue);
+		joystickValue = scaleJoystick(joystickValue);
+		// log.add("getRightX (" + joystickValue + ")", LOG_LEVEL);
+		return joystickValue;
+	}
+  
+
+  private double scaleJoystick(double joystickValue) {
+		joystickValue = checkDeadZone(joystickValue);
+		joystickValue = scaleSensitivity(joystickValue);
+		return joystickValue;
+	}
+
+	// Scale Joystick Sensitivity
+	// a = sensitivity, and x is the power parameter
+	// y = a(x^3) + (1-a)x
+	private double scaleSensitivity(double x) {
+		double a = Constants.JOYSTICK_SENSITIVITY;
+		return a * (Math.pow(x, 3)) + (a - 1) * x;
+	}
+
+	private double checkDeadZone(double joystickValue) {
+		if (Math.abs(joystickValue) < Constants.JOYSTICK_DEADZONE) {
+			joystickValue = 0.0;
+		}
+		return joystickValue;
+	}
 }
