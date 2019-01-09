@@ -19,14 +19,13 @@ public class Drive extends Command {
   private Drivetrain s_Drivetrain = Robot.s_Drivetrain;
 
   private double leftPowerOld, rightPowerOld;
-	private Timer timer = new Timer();
-	private double throttleOld;
-	private double angleOld;
-	private double currentAngle;
-	private double angleAdjustment;
-	private double heading;
-	private boolean hasHeading;
-
+  private Timer timer = new Timer();
+  private double throttleOld;
+  private double angleOld;
+  private double currentAngle;
+  private double angleAdjustment;
+  private double heading;
+  private boolean hasHeading;
 
   public Drive() {
     // Use requires() here to declare subsystem dependencies
@@ -37,11 +36,11 @@ public class Drive extends Command {
   @Override
   protected void initialize() {
     s_Drivetrain.stop();
-		leftPowerOld = 0.0;
-		rightPowerOld = 0.0;
+    leftPowerOld = 0.0;
+    rightPowerOld = 0.0;
 
-		timer.start();
-		timer.reset();
+    timer.start();
+    timer.reset();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -50,62 +49,51 @@ public class Drive extends Command {
     double throttle = m_oi.getLeftY();
     double turn = m_oi.getRightX();
     /*
-    if (imu != null) {
-      if (turn == 0 && !hasHeading && Math.abs(imu.getAngleZ() - angleOld) < RobotMap.TURN_RATE_THRESHOLD) {
-        hasHeading = true;
-        heading = imu.getAngleZ();
-      }
-      angleOld = imu.getAngleZ();
-
-      if (turn == 0 && throttle != 0) {
-        driveStraight(throttle, heading);
-      } else {
-        hasHeading = false;
-        execute(throttle, turn);
-      }
-    } else {
-      execute(throttle, turn);
-    }
-    */
+     * if (imu != null) { if (turn == 0 && !hasHeading && Math.abs(imu.getAngleZ() -
+     * angleOld) < RobotMap.TURN_RATE_THRESHOLD) { hasHeading = true; heading =
+     * imu.getAngleZ(); } angleOld = imu.getAngleZ();
+     * 
+     * if (turn == 0 && throttle != 0) { driveStraight(throttle, heading); } else {
+     * hasHeading = false; execute(throttle, turn); } } else { execute(throttle,
+     * turn); }
+     */
     execute(throttle, turn);
   }
 
   private void execute(double throttle, double turn) {
-		throttle *= -1;
-		double dt = timer.get();
-		timer.reset();
+    throttle *= -1;
+    double dt = timer.get();
+    timer.reset();
 
-		throttle = restrictAcceleration(throttle, throttleOld, dt);
+    throttle = restrictAcceleration(throttle, throttleOld, dt);
 
-		s_Drivetrain.setPower(throttle - turn, throttle + turn);
+    s_Drivetrain.setPower(throttle - turn, throttle + turn);
 
-		throttleOld = throttle;
+    throttleOld = throttle;
   }
-  
+
   protected void driveStraight(double throttle, double heading) {
-		/*currentAngle = imu.getAngleZ();
-		angleAdjustment = heading - currentAngle;
-		log.add("Heading: " + heading, LOG_LEVEL);
-		log.add("Current: " + currentAngle, LOG_LEVEL);
-		log.add("Adjustment: " + angleAdjustment, LOG_LEVEL);
-
-		double turn = angleAdjustment * Constants.DRIVESTRAIGHT_KP;
-		log.add("Turn: " + turn, LOG_LEVEL);
-    execute(throttle, turn);
-    */
+    /*
+     * currentAngle = imu.getAngleZ(); angleAdjustment = heading - currentAngle;
+     * log.add("Heading: " + heading, LOG_LEVEL); log.add("Current: " +
+     * currentAngle, LOG_LEVEL); log.add("Adjustment: " + angleAdjustment,
+     * LOG_LEVEL);
+     * 
+     * double turn = angleAdjustment * Constants.DRIVESTRAIGHT_KP; log.add("Turn: "
+     * + turn, LOG_LEVEL); execute(throttle, turn);
+     */
   }
-  
+
   public static double restrictAcceleration(double goalPower, double currentPower, double dt) {
-		double maxDeltaPower = Constants.ACCELERATION_MAX * dt;
-		double deltaPower = Math.abs(goalPower - currentPower);
-		double deltaSign = (goalPower < currentPower) ? -1.0 : 1.0;
+    double maxDeltaPower = Constants.ACCELERATION_MAX * dt;
+    double deltaPower = Math.abs(goalPower - currentPower);
+    double deltaSign = (goalPower < currentPower) ? -1.0 : 1.0;
 
-		deltaPower = Math.min(maxDeltaPower, deltaPower);
-		goalPower = currentPower + deltaSign * deltaPower;
+    deltaPower = Math.min(maxDeltaPower, deltaPower);
+    goalPower = currentPower + deltaSign * deltaPower;
 
-		return goalPower;
-	}
-
+    return goalPower;
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

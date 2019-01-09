@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * An example command.  You can replace me with your own command.
+ * An example command. You can replace me with your own command.
  */
 public class ExecuteAfterWait extends CommandGroup {
-  //Use addParallel to add the command
+  // Use addParallel to add the command
   public ExecuteAfterWait(double time, Command command) {
     addSequential(new Delay(time));
     addSequential(command);

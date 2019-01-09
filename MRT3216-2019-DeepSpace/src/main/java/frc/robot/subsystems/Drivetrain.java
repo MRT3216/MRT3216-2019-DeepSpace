@@ -10,35 +10,34 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Drivetrain extends Subsystem {
-	//DRIVETRAIN SUBSYSTEM COPIED OVER FROM 2018. ALL ROBOT SPECIFIC CODE IS COMMENTED OUT
-	//LOGGING INFORMATION IS ALSO COMMENTED OUT
+	// DRIVETRAIN SUBSYSTEM COPIED OVER FROM 2018. ALL ROBOT SPECIFIC CODE IS
+	// COMMENTED OUT
+	// LOGGING INFORMATION IS ALSO COMMENTED OUT
 
 	/** Configuration Constants ***********************************************/
-	//private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN;
+	// private static final Logger.Level LOG_LEVEL = RobotMap.LOG_DRIVETRAIN;
 
 	/** Instance Variables ****************************************************/
 	private SpeedController leftMotors, rightMotors;
-	//private Logger log = new Logger(LOG_LEVEL, getName());
+	// private Logger log = new Logger(LOG_LEVEL, getName());
 	double leftPowerOld, rightPowerOld;
 	Timer timer = new Timer();
 
 	public Drivetrain() {
-		//log.add("Constructor", LOG_LEVEL);
+		// log.add("Constructor", LOG_LEVEL);
 		/*
-		if (RobotMap.currentBot == RobotMap.Bot.MAINBOT || RobotMap.currentBot == RobotMap.Bot.TESTBOARD) {
-			leftMotors = new VictorSP(RobotMap.PWM_LEFT_MOTOR);
-			rightMotors = new VictorSP(RobotMap.PWM_RIGHT_MOTOR);
-
-			initMotor((VictorSP) leftMotors, RobotMap.REVERSE_LEFT_MOTOR);
-			initMotor((VictorSP) rightMotors, RobotMap.REVERSE_RIGHT_MOTOR);
-		} else {
-			leftMotors = new Talon(RobotMap.PWM_LEFT_MOTOR);
-			rightMotors = new Talon(RobotMap.PWM_RIGHT_MOTOR);
-
-			initMotor((Talon) leftMotors, RobotMap.REVERSE_LEFT_MOTOR);
-			initMotor((Talon) rightMotors, RobotMap.REVERSE_RIGHT_MOTOR);
-		}
-		*/
+		 * if (RobotMap.currentBot == RobotMap.Bot.MAINBOT || RobotMap.currentBot ==
+		 * RobotMap.Bot.TESTBOARD) { leftMotors = new VictorSP(RobotMap.PWM_LEFT_MOTOR);
+		 * rightMotors = new VictorSP(RobotMap.PWM_RIGHT_MOTOR);
+		 * 
+		 * initMotor((VictorSP) leftMotors, RobotMap.REVERSE_LEFT_MOTOR);
+		 * initMotor((VictorSP) rightMotors, RobotMap.REVERSE_RIGHT_MOTOR); } else {
+		 * leftMotors = new Talon(RobotMap.PWM_LEFT_MOTOR); rightMotors = new
+		 * Talon(RobotMap.PWM_RIGHT_MOTOR);
+		 * 
+		 * initMotor((Talon) leftMotors, RobotMap.REVERSE_LEFT_MOTOR); initMotor((Talon)
+		 * rightMotors, RobotMap.REVERSE_RIGHT_MOTOR); }
+		 */
 	}
 
 	private void initMotor(Talon motor, boolean reverse) {
@@ -52,12 +51,10 @@ public class Drivetrain extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		/*
-		if (RobotMap.DriveMode.TANK == RobotMap.currentDriveMode) {
-			setDefaultCommand(new Drivetrain_TankDrive());
-		} else {
-			setDefaultCommand(new Drivetrain_ArcadeDrive());
-		}
-		*/
+		 * if (RobotMap.DriveMode.TANK == RobotMap.currentDriveMode) {
+		 * setDefaultCommand(new Drivetrain_TankDrive()); } else { setDefaultCommand(new
+		 * Drivetrain_ArcadeDrive()); }
+		 */
 	}
 
 	/** Methods for setting the motors *************************************/

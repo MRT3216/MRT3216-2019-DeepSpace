@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.settings.*;
@@ -31,14 +30,14 @@ public class Intake extends Subsystem {
   }
 
   private double safetyCheck(double power) {
-		power = Math.min(1.0, power);
-		power = Math.max(-1.0, power);
-		/*
-		 * if((!topSwitch.get() && power > 0) || (!bottomSwitch.get() && power < 0)) {
-		 * return power; } else { return 0.0; }
-		 */
-		return power;
-	}
+    power = Math.min(1.0, power);
+    power = Math.max(-1.0, power);
+    /*
+     * if((!topSwitch.get() && power > 0) || (!bottomSwitch.get() && power < 0)) {
+     * return power; } else { return 0.0; }
+     */
+    return power;
+  }
 
   @Override
   public void initDefaultCommand() {

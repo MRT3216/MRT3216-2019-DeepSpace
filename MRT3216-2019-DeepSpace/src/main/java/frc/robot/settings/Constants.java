@@ -24,11 +24,11 @@ public class Constants {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-  //Driving Constants
-  public static double ACCELERATION_MAX = 3.0; //TODO: Calculate new max for new robot
-  public static double DRIVESTRAIGHT_KP = 0.01; //TODO: Tune new robot
+  // Driving Constants
+  public static double ACCELERATION_MAX = 3.0; // TODO: Calculate new max for new robot
+  public static double DRIVESTRAIGHT_KP = 0.01; // TODO: Tune new robot
 
-  //Control Constants
+  // Control Constants
   public static double JOYSTICK_SENSITIVITY = 0.8;
   public static double JOYSTICK_DEADZONE = 0.05;
 }
