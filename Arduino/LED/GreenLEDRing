@@ -1,8 +1,8 @@
 #include <Adafruit_NeoPixel.h> //Make sure to install the neopixel library
 
-#define PIN 7 //LED Ring Pin
+#define PIN 6 //LED Ring Pin
 
-const int buttonPin = 6;
+const int buttonPin = 7;
 int buttonState = 0;
 
 Adafruit_NeoPixel ring = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
