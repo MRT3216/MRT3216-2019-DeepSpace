@@ -15,102 +15,102 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.settings.*;
 
 public class Drive extends Command {
-  private OI m_oi = Robot.m_oi;
-  private Drivetrain s_Drivetrain = Robot.s_Drivetrain;
+	private OI m_oi = Robot.m_oi;
+	private Drivetrain s_Drivetrain = Robot.s_Drivetrain;
 
-  private double leftPowerOld, rightPowerOld;
-  private Timer timer = new Timer();
-  private double throttleOld;
-  private double angleOld;
-  private double currentAngle;
-  private double angleAdjustment;
-  private double heading;
-  private boolean hasHeading;
+	private double leftPowerOld, rightPowerOld;
+	private Timer timer = new Timer();
+	private double throttleOld;
+	private double angleOld;
+	private double currentAngle;
+	private double angleAdjustment;
+	private double heading;
+	private boolean hasHeading;
 
-  public Drive() {
-    // Use requires() here to declare subsystem dependencies
-    requires(s_Drivetrain);
-  }
+	public Drive() {
+		// Use requires() here to declare subsystem dependencies
+		requires(s_Drivetrain);
+	}
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-    s_Drivetrain.stop();
-    leftPowerOld = 0.0;
-    rightPowerOld = 0.0;
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize() {
+		s_Drivetrain.stop();
+		leftPowerOld = 0.0;
+		rightPowerOld = 0.0;
 
-    timer.start();
-    timer.reset();
-  }
+		timer.start();
+		timer.reset();
+	}
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-    double throttle = m_oi.getLeftY();
-    double turn = m_oi.getRightX();
-    /*
-     * if (imu != null) { if (turn == 0 && !hasHeading && Math.abs(imu.getAngleZ() -
-     * angleOld) < RobotMap.TURN_RATE_THRESHOLD) { hasHeading = true; heading =
-     * imu.getAngleZ(); } angleOld = imu.getAngleZ();
-     * 
-     * if (turn == 0 && throttle != 0) { driveStraight(throttle, heading); } else {
-     * hasHeading = false; execute(throttle, turn); } } else { execute(throttle,
-     * turn); }
-     */
-    execute(throttle, turn);
-  }
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute() {
+		double throttle = m_oi.getLeftY();
+		double turn = m_oi.getRightX();
+		/*
+		 * if (imu != null) { if (turn == 0 && !hasHeading && Math.abs(imu.getAngleZ() -
+		 * angleOld) < RobotMap.TURN_RATE_THRESHOLD) { hasHeading = true; heading =
+		 * imu.getAngleZ(); } angleOld = imu.getAngleZ();
+		 * 
+		 * if (turn == 0 && throttle != 0) { driveStraight(throttle, heading); } else {
+		 * hasHeading = false; execute(throttle, turn); } } else { execute(throttle,
+		 * turn); }
+		 */
+		execute(throttle, turn);
+	}
 
-  private void execute(double throttle, double turn) {
-    throttle *= -1;
-    double dt = timer.get();
-    timer.reset();
+	private void execute(double throttle, double turn) {
+		throttle *= -1;
+		double dt = timer.get();
+		timer.reset();
 
-    throttle = restrictAcceleration(throttle, throttleOld, dt);
+		throttle = restrictAcceleration(throttle, throttleOld, dt);
 
-    s_Drivetrain.setPower(throttle - turn, throttle + turn);
+		s_Drivetrain.setPower(throttle - turn, throttle + turn);
 
-    throttleOld = throttle;
-  }
+		throttleOld = throttle;
+	}
 
-  protected void driveStraight(double throttle, double heading) {
-    /*
-     * currentAngle = imu.getAngleZ(); angleAdjustment = heading - currentAngle;
-     * log.add("Heading: " + heading, LOG_LEVEL); log.add("Current: " +
-     * currentAngle, LOG_LEVEL); log.add("Adjustment: " + angleAdjustment,
-     * LOG_LEVEL);
-     * 
-     * double turn = angleAdjustment * Constants.DRIVESTRAIGHT_KP; log.add("Turn: "
-     * + turn, LOG_LEVEL); execute(throttle, turn);
-     */
-  }
+	protected void driveStraight(double throttle, double heading) {
+		/*
+		 * currentAngle = imu.getAngleZ(); angleAdjustment = heading - currentAngle;
+		 * log.add("Heading: " + heading, LOG_LEVEL); log.add("Current: " +
+		 * currentAngle, LOG_LEVEL); log.add("Adjustment: " + angleAdjustment,
+		 * LOG_LEVEL);
+		 * 
+		 * double turn = angleAdjustment * Constants.DRIVESTRAIGHT_KP; log.add("Turn: "
+		 * + turn, LOG_LEVEL); execute(throttle, turn);
+		 */
+	}
 
-  public static double restrictAcceleration(double goalPower, double currentPower, double dt) {
-    double maxDeltaPower = Constants.ACCELERATION_MAX * dt;
-    double deltaPower = Math.abs(goalPower - currentPower);
-    double deltaSign = (goalPower < currentPower) ? -1.0 : 1.0;
+	public static double restrictAcceleration(double goalPower, double currentPower, double dt) {
+		double maxDeltaPower = Constants.ACCELERATION_MAX * dt;
+		double deltaPower = Math.abs(goalPower - currentPower);
+		double deltaSign = (goalPower < currentPower) ? -1.0 : 1.0;
 
-    deltaPower = Math.min(maxDeltaPower, deltaPower);
-    goalPower = currentPower + deltaSign * deltaPower;
+		deltaPower = Math.min(maxDeltaPower, deltaPower);
+		goalPower = currentPower + deltaSign * deltaPower;
 
-    return goalPower;
-  }
+		return goalPower;
+	}
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-    s_Drivetrain.stop();
-  }
+	// Called once after isFinished returns true
+	@Override
+	protected void end() {
+		s_Drivetrain.stop();
+	}
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-    s_Drivetrain.stop();
-  }
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted() {
+		s_Drivetrain.stop();
+	}
 }

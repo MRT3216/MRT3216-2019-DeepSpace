@@ -14,33 +14,33 @@ package frc.robot.settings;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
+	// For example to map the left and right motors, you could define the
+	// following variables to use with your drivetrain subsystem.
+	// public static int leftMotor = 1;
+	// public static int rightMotor = 2;
 
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
+	// If you are using multiple modules, make sure to define both the port
+	// number and the module. For example you with a rangefinder:
+	// public static int rangefinderPort = 1;
+	// public static int rangefinderModule = 1;
 
-  // USB Ports
-  public static final int USB_GAMEPAD = 0;
-  public static final int USB_CONTROL_STICK = 1;
+	// USB Ports
+	public static final int USB_GAMEPAD = 0;
+	public static final int USB_CONTROL_STICK = 1;
 
-  // Motor Controller Ports
-  public static final int DRIVETRAIN_LEFT_MOTOR = 0;
-  public static final int DRIVETRAIN_RIGHT_MOTOR = 1;
-  public static final int ELEVATOR_MOTOR = 2;
-  public static final int INTAKE_MOTOR = 3;
+	// Motor Controller Ports
+	public static final int DRIVETRAIN_LEFT_MOTOR = 0;
+	public static final int DRIVETRAIN_RIGHT_MOTOR = 1;
+	public static final int ELEVATOR_MOTOR = 2;
+	public static final int INTAKE_MOTOR = 3;
 
-  // PCM Ports
-  public static final int PANEL_RELEASE_C = 0;
-  public static final int PANEL_RELEASE_O = 1;
-  public static final int FRONT_LIFT_C = 2;
-  public static final int FRONT_LIFT_O = 3;
-  public static final int REAR_LIFT_C = 4;
-  public static final int REAR_LIFT_O = 5;
-  public static final int INTAKE_ARM_C = 6;
-  public static final int INTAKE_ARM_O = 7;
+	// PCM Ports
+	public static final int PANEL_RELEASE_C = 0;
+	public static final int PANEL_RELEASE_O = 1;
+	public static final int FRONT_LIFT_C = 2;
+	public static final int FRONT_LIFT_O = 3;
+	public static final int REAR_LIFT_C = 4;
+	public static final int REAR_LIFT_O = 5;
+	public static final int PANEL_EXTEND_C = 6;
+	public static final int PANEL_EXTEND_O = 7;
 }

@@ -12,11 +12,11 @@ package frc.robot.settings;
  */
 public class State {
 
-    public static enum ELEVATOR_POS {
-        BOTTOM, MIDDLE, TOP
-    }
+	public static enum ELEVATOR_POS {
+		BOTTOM, MIDDLE, TOP
+	}
 
-    public static enum GAME_PIECE {
-        CARGO, PANEL
-    }
+	public static enum GAME_PIECE {
+		CARGO, PANEL
+	}
 }
