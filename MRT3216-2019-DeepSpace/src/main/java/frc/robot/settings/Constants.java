@@ -31,4 +31,8 @@ public class Constants {
 	// Control Constants
 	public static double JOYSTICK_SENSITIVITY = 0.8;
 	public static double JOYSTICK_DEADZONE = 0.05;
+
+	// Intake Constants
+	public static double INTAKE_SPEED = 0.5;
+	public static double EJECT_SPEED = 0.5;
 }

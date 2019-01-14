@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.settings.*;
 
 public class Drive extends Command {
-	private OI m_oi = Robot.m_oi;
-	private Drivetrain s_Drivetrain = Robot.s_Drivetrain;
+	private OI m_oi = Robot.mOI;
+	private Drivetrain s_Drivetrain = Robot.sDrivetrain;
 
 	private double leftPowerOld, rightPowerOld;
 	private Timer timer = new Timer();

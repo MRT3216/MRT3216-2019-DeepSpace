@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,9 +23,11 @@ import frc.robot.subsystems.Elevator;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static Drivetrain s_Drivetrain = new Drivetrain();
-  public static Elevator s_Elevator = new Elevator();
-  public static OI m_oi;
+  public static Drivetrain sDrivetrain = new Drivetrain();
+  public static Elevator sElevator = new Elevator();
+  public static Intake sIntake = new Intake();
+  public static OI mOI;
+
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -35,7 +38,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
+    mOI = new OI();
     // m_chooser.addDefault("Default Auto", new ExampleCommand());
     // chooser.addObject("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);

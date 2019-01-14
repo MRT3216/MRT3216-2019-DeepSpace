@@ -10,8 +10,8 @@ import frc.robot.subsystems.Elevator;
  */
 public class Elevator_Drive extends Command {
 
-	Elevator elevator = Robot.s_Elevator;
-	OI oi = Robot.m_oi;
+	Elevator elevator = Robot.sElevator;
+	OI oi = Robot.mOI;
 
 	public Elevator_Drive() {
 		requires(elevator);

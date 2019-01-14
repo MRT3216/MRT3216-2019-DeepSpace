@@ -8,8 +8,8 @@
 package frc.robot;
 
 /**
- * Add your docs here.
- */
+ * Class for Logitech Extreme 3D Pro joystick
+ */ 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
