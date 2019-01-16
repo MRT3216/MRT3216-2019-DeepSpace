@@ -30,26 +30,12 @@ public class NetworkTablesController {
     private NetworkTablesController() {
         mNTInstance = NetworkTableInstance.getDefault();
         mTable = mNTInstance.getTable(ntTABLE_NAME);
-        populateNT();
     }
 
     public NetworkTable getNetworkTable() {
         return mTable;
     }
 
-    // Set all the default values of objects here
-    private void populateNT() {
-        mTable.getEntry(ntACCELERATION_MAX).getDouble(3.0);
-        
-        
-        
-        
-    }
-
-    public void update() {
-    }
-
-    
     /**** These are all the variables for NetworkTables names and paths ****/
         public final String ntTABLE_NAME = "data";
 
