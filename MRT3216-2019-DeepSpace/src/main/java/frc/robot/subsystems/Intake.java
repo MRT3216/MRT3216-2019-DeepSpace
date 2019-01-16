@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.settings.*;
 
@@ -18,15 +18,22 @@ public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private Talon intakeMotor;
+  private VictorSP intakeMotor;
+  private VictorSP ejectMotor;
 
   public Intake() {
-    intakeMotor = new Talon(RobotMap.INTAKE_MOTOR);
+    intakeMotor = new VictorSP(RobotMap.INTAKE_MOTOR);
+    ejectMotor = new VictorSP(RobotMap.EJECT_MOTOR);
   }
 
-  public void setPower(double power) {
+  public void setIntakePower(double power) {
     power = safetyCheck(power);
     intakeMotor.set(power);
+  }  
+  
+  public void setEjectPower(double power) {
+    power = safetyCheck(power);
+    ejectMotor.set(power);
   }
 
   private double safetyCheck(double power) {
@@ -43,5 +50,18 @@ public class Intake extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  public void stopIntake() {
+    intakeMotor.set(0);
+  }
+
+  public void stopEject() {
+    ejectMotor.set(0);
+  }
+
+  public void stop() {
+    stopIntake();
+    stopEject();
   }
 }

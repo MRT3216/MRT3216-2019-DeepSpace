@@ -33,6 +33,7 @@ public class RobotMap {
 	public static final int DRIVETRAIN_RIGHT_MOTOR = 1;
 	public static final int ELEVATOR_MOTOR = 2;
 	public static final int INTAKE_MOTOR = 3;
+	public static final int EJECT_MOTOR = 3;
 
 	// PCM Ports
 	public static final int PANEL_RELEASE_C = 0;

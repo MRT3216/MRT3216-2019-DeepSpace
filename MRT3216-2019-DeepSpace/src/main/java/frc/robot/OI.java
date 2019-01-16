@@ -7,8 +7,10 @@
 
 package frc.robot;
 
+import frc.robot.commands.EjectCargo;
+import frc.robot.commands.IntakeCargo;
+import frc.robot.settings.Constants;
 import frc.robot.settings.RobotMap;
-import frc.robot.settings.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,7 +52,8 @@ public class OI {
 
     gamepad = new Gamepad(RobotMap.USB_GAMEPAD);
     controlStick = new ControlStick(RobotMap.USB_CONTROL_STICK);
-    // controlStick.Trigger.whenPressed(new Run_Intake);
+    controlStick.Trigger.whileHeld(new IntakeCargo());//not sure the difference between whileHeld() and whileActive() Java Docs aren't too helpful or clear
+    controlStick.button2.whileHeld(new EjectCargo());
 
   }
 
