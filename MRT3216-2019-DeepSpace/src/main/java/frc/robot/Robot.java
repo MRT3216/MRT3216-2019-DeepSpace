@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.settings.NetworkTablesController;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -27,7 +28,7 @@ public class Robot extends TimedRobot {
   public static Elevator sElevator = new Elevator();
   public static Intake sIntake = new Intake();
   public static OI mOI;
-
+  public static NetworkTablesController mNTController;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     mOI = new OI();
+    mNTController = NetworkTablesController.getInstance();
     // m_chooser.addDefault("Default Auto", new ExampleCommand());
     // chooser.addObject("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
@@ -55,6 +57,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    mNTController.update();
   }
 
   /**
