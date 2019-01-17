@@ -9,11 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.settings.Constants;
+import frc.robot.settings.NetworkTablesController;
 import frc.robot.subsystems.Intake;
 
 public class EjectCargo extends Command {
   private Intake intake = Robot.sIntake;
+  private static NetworkTablesController NT = Robot.mNTController;
 
   public EjectCargo() {
     // Use requires() here to declare subsystem dependencies
@@ -28,8 +29,8 @@ public class EjectCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.setIntakePower(Constants.EJECT_SPEED);
-    intake.setEjectPower(Constants.EJECT_SPEED);
+    intake.setIntakePower(NT.EJECT_SPEED);
+    intake.setEjectPower(NT.EJECT_SPEED);
   }
 
   // Make this return true when this Command no longer needs to run execute()

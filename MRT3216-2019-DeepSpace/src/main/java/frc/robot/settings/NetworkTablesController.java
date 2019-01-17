@@ -52,17 +52,17 @@ public class NetworkTablesController {
 
     /*** These are all the values for the NetworkTables ****/
         // Driving Constants
-        public double ACCELERATION_MAX =  mTable.getEntry(ntACCELERATION_MAX).getDouble(3.0); // TODO: Calculate new max for new robot
-        public double DRIVE_STRAIGHT_KP = mTable.getEntry(ntDRIVE_STRAIGHT_KP).getDouble(0.01);; // TODO: Tune new robot
+        public double ACCELERATION_MAX = 3.0;//mTable.getEntry(ntACCELERATION_MAX).getDouble(3.0); // TODO: Calculate new max for new robot
+        public double DRIVE_STRAIGHT_KP = 0.01;//mTable.getEntry(ntDRIVE_STRAIGHT_KP).getDouble(0.01);; // TODO: Tune new robot
 
         // Control Constants
-        public double JOYSTICK_SENSITIVITY = mTable.getEntry(ntJOYSTICK_SENSITIVITY).getDouble(0.8);
+        public double JOYSTICK_SENSITIVITY = 0.8;//mTable.getEntry(ntJOYSTICK_SENSITIVITY).getDouble(0.8);
 
-        public double JOYSTICK_DEADZONE = mTable.getEntry(ntJOYSTICK_DEADZONE).getDouble(0.05);
+        public double JOYSTICK_DEADZONE = 0.05;//mTable.getEntry(ntJOYSTICK_DEADZONE).getDouble(0.05);
 
         // Intake Constants
-        public double INTAKE_SPEED = mTable.getEntry(ntINTAKE_SPEED).getDouble(0.5);;
-        public double EJECT_SPEED = mTable.getEntry(ntEJECT_SPEED).getDouble(0.5);;
+        public double INTAKE_SPEED = 0.5;//mTable.getEntry(ntINTAKE_SPEED).getDouble(0.5);;
+        public double EJECT_SPEED = 0.5;//mTable.getEntry(ntEJECT_SPEED).getDouble(0.5);;
 
 
 
