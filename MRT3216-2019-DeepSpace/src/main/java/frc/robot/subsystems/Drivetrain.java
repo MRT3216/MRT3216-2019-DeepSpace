@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.settings.RobotMap;
 
 /**
  *
@@ -38,6 +39,9 @@ public class Drivetrain extends Subsystem {
 		 * initMotor((Talon) leftMotors, RobotMap.REVERSE_LEFT_MOTOR); initMotor((Talon)
 		 * rightMotors, RobotMap.REVERSE_RIGHT_MOTOR); }
 		 */
+		leftMotors = new VictorSP(RobotMap.DRIVETRAIN_LEFT_MOTOR);
+		rightMotors = new VictorSP(RobotMap.DRIVETRAIN_RIGHT_MOTOR);
+		rightMotors.setInverted(true);
 	}
 
 	private void initMotor(Talon motor, boolean reverse) {

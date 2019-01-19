@@ -9,8 +9,8 @@ package frc.robot;
 
 import frc.robot.commands.EjectCargo;
 import frc.robot.commands.IntakeCargo;
-import frc.robot.settings.Constants;
 import frc.robot.settings.RobotMap;
+import frc.robot.settings.ShuffleboardController;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -47,12 +47,14 @@ public class OI {
 
   private Gamepad gamepad;
   private ControlStick controlStick;
+  public static ShuffleboardController SB = Robot.mSBController;
 
   public OI() {
 
     gamepad = new Gamepad(RobotMap.USB_GAMEPAD);
     controlStick = new ControlStick(RobotMap.USB_CONTROL_STICK);
-    controlStick.Trigger.whileHeld(new IntakeCargo());//not sure the difference between whileHeld() and whileActive() Java Docs aren't too helpful or clear
+    controlStick.Trigger.whileHeld(new IntakeCargo());// not sure the difference between whileHeld() and whileActive()
+                                                      // Java Docs aren't too helpful or clear
     controlStick.button2.whileHeld(new EjectCargo());
 
   }
@@ -93,12 +95,12 @@ public class OI {
   // a = sensitivity, and x is the power parameter
   // y = a(x^3) + (1-a)x
   private double scaleSensitivity(double x) {
-    double a = Constants.JOYSTICK_SENSITIVITY;
+    double a = SB.JOYSTICK_SENSITIVITY;
     return a * (Math.pow(x, 3)) + (a - 1) * x;
   }
 
   private double checkDeadZone(double joystickValue) {
-    if (Math.abs(joystickValue) < Constants.JOYSTICK_DEADZONE) {
+    if (Math.abs(joystickValue) < SB.JOYSTICK_DEADZONE) {
       joystickValue = 0.0;
     }
     return joystickValue;
