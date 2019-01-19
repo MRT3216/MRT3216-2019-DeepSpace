@@ -7,34 +7,30 @@
 
 package frc.robot.settings;
 
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 /**
  * Add your docs here.
  */
-public class NetworkTablesController {
-    private static NetworkTablesController instance;
+public class ShuffleboardController {
+    private static ShuffleboardController instance;
+    private ShuffleboardTab config;
 
-    private NetworkTableInstance mNTInstance;
-    private NetworkTable mTable;
 
     //Singleton Code
-    public static NetworkTablesController getInstance() {
+    public static ShuffleboardController getInstance() {
         if(instance == null) {
-            instance = new NetworkTablesController();
+            instance = new ShuffleboardController();
         }
         return instance;
     }
 
-    private NetworkTablesController() {
-        mNTInstance = NetworkTableInstance.getDefault();
-        mTable = mNTInstance.getTable(ntTABLE_NAME);
+    private ShuffleboardController() {
+        config = Shuffleboard.getTab("Configuration");
+
     }
 
-    public NetworkTable getNetworkTable() {
-        return mTable;
-    }
 
     /**** These are all the variables for NetworkTables names and paths ****/
         public final String ntTABLE_NAME = "data";

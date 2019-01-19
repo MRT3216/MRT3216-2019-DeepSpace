@@ -17,7 +17,7 @@ import frc.robot.settings.*;
 public class Drive extends Command {
 	private OI m_oi = Robot.mOI;
 	private Drivetrain s_Drivetrain = Robot.sDrivetrain;
-	private static NetworkTablesController NT = Robot.mNTController;
+	public static ShuffleboardController SB = Robot.mSBController;
 
 	private double leftPowerOld, rightPowerOld;
 	private Timer timer = new Timer();
@@ -86,7 +86,7 @@ public class Drive extends Command {
 	}
 
 	public static double restrictAcceleration(double goalPower, double currentPower, double dt) {
-		double maxDeltaPower = NT.ACCELERATION_MAX * dt;
+		double maxDeltaPower = SB.ACCELERATION_MAX * dt;
 		double deltaPower = Math.abs(goalPower - currentPower);
 		double deltaSign = (goalPower < currentPower) ? -1.0 : 1.0;
 

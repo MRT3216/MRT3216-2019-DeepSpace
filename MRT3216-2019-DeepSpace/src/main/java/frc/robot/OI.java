@@ -9,8 +9,8 @@ package frc.robot;
 
 import frc.robot.commands.EjectCargo;
 import frc.robot.commands.IntakeCargo;
-import frc.robot.settings.NetworkTablesController;
 import frc.robot.settings.RobotMap;
+import frc.robot.settings.ShuffleboardController;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -47,7 +47,7 @@ public class OI {
 
   private Gamepad gamepad;
   private ControlStick controlStick;
-  private static NetworkTablesController NT;// = Robot.mNTController;
+  public static ShuffleboardController SB = Robot.mSBController;
 
   public OI() {
 
@@ -95,12 +95,12 @@ public class OI {
   // a = sensitivity, and x is the power parameter
   // y = a(x^3) + (1-a)x
   private double scaleSensitivity(double x) {
-    double a = NT.JOYSTICK_SENSITIVITY;
+    double a = SB.JOYSTICK_SENSITIVITY;
     return a * (Math.pow(x, 3)) + (a - 1) * x;
   }
 
   private double checkDeadZone(double joystickValue) {
-    if (Math.abs(joystickValue) < NT.JOYSTICK_DEADZONE) {
+    if (Math.abs(joystickValue) < SB.JOYSTICK_DEADZONE) {
       joystickValue = 0.0;
     }
     return joystickValue;
