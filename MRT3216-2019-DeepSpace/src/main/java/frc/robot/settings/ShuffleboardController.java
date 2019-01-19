@@ -7,8 +7,11 @@
 
 package frc.robot.settings;
 
+import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -30,6 +33,11 @@ public class ShuffleboardController {
         config = Shuffleboard.getTab("Configuration");
 
     }
+
+    //SmartDashboard.putNumber("Joystick X value", SGControl.getJX);
+    //SmartDashboard.putNumber("Joystick Y value", SGControl.getJY);
+    //SmartDashboard.putNumber("Battery Voltage", SGControl.getBVolt);
+
 
 
     /**** These are all the variables for NetworkTables names and paths ****/
