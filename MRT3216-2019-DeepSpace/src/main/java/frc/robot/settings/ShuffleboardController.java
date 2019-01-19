@@ -70,7 +70,7 @@ public class ShuffleboardController {
 
         // Vision Settings
         public double ARDUINO_TIMER = 0.1;
-        public boolean FRONT_VISION = false;
+        public boolean VISION_RING = false;
 
 
 
