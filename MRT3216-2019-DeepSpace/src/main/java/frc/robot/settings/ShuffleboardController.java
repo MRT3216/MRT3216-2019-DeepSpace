@@ -68,6 +68,10 @@ public class ShuffleboardController {
         public double INTAKE_SPEED = 0.5;//mTable.getEntry(ntINTAKE_SPEED).getDouble(0.5);;
         public double EJECT_SPEED = 0.5;//mTable.getEntry(ntEJECT_SPEED).getDouble(0.5);;
 
+        // Vision Settings
+        public double ARDUINO_TIMER = 0.1;
+        public boolean FRONT_VISION = false;
+
 
 
 

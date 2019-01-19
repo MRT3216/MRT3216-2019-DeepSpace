@@ -7,14 +7,18 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.settings.ShuffleboardController;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +33,9 @@ public class Robot extends TimedRobot {
   public static Intake sIntake = new Intake();
   public static OI mOI;
   public static ShuffleboardController mSBController;
+  public static SerialPort arduino;
+  public static Timer arduinoTimer;
+  public static DriverStation ds;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -41,6 +48,15 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     mOI = new OI();
     mSBController = ShuffleboardController.getInstance();
+    try {
+      arduino = new SerialPort(115200, SerialPort.Port.kUSB);
+    } catch (Exception e) {
+    }
+
+    arduinoTimer = new Timer();
+    arduinoTimer.start();
+    ds = DriverStation.getInstance();
+
     // m_chooser.addDefault("Default Auto", new ExampleCommand());
     // chooser.addObject("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
@@ -57,6 +73,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    updateArduino();
   }
 
   /**
@@ -136,4 +153,25 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
     sDrivetrain.setPower(.1, .1);
   }
+
+  public void updateArduino() {
+		try {
+			if (arduinoTimer.get() > mSBController.ARDUINO_TIMER) { // send periodically to avoid buffer overflows
+				byte mode1 = 0;  //////// structure: 0b<red><blue><fms><auton><teleop><disabled><enabled><attached>
+				if (ds.getAlliance() == DriverStation.Alliance.Red)  mode1 |= 0b10000000; // on the red alliance
+				if (ds.getAlliance() == DriverStation.Alliance.Blue) mode1 |= 0b01000000; // blue alliance 
+				if (ds.isAutonomous() && ds.isEnabled())             mode1 |= 0b00100000; // auton mode
+				if (ds.isOperatorControl() && ds.isEnabled())        mode1 |= 0b00010000; // teleop mode
+				if (mSBController.VISION_RING)/*front_vision + 0.5 > matchTimer.get())*/           mode1 |= 0b00001000; // enable front vision leds
+				//if (rear_vision + 0.5 > matchTimer.get())            mode1 |= 0b00000100; // enable rear vision leds
+				if (ds.isDisabled())                                 mode1 |= 0b00000010; // tell if robot is disabled so we can rainbow at idle
+
+				byte[] mode2 = {mode1}; // needs to be a list
+				arduino.write(mode2,1); // send the byte of status over
+				
+				arduinoTimer.reset(); // reset the timer so we can 
+				arduinoTimer.start(); // probably don't need to do this
+			}
+		} catch (RuntimeException a) { }
+	}
 }
