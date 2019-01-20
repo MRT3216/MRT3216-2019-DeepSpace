@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.settings.ShuffleboardController;
 import frc.robot.subsystems.Drivetrain;
@@ -73,6 +74,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    mSBController.update();
     updateArduino();
   }
 
@@ -159,10 +161,10 @@ public class Robot extends TimedRobot {
 			if (arduinoTimer.get() > mSBController.ARDUINO_TIMER) { // send periodically to avoid buffer overflows
 				byte mode1 = 0;  //////// structure: 0b<red><blue><fms><auton><teleop><disabled><enabled><attached>
 				if (ds.getAlliance() == DriverStation.Alliance.Red)  mode1 |= 0b10000000; // on the red alliance
-				if (ds.getAlliance() == DriverStation.Alliance.Blue) mode1 |= 0b01000000; // blue alliance 
+				if (mSBController.VISION_RING) mode1 |= 0b01000000; // blue alliance 
 				if (ds.isAutonomous() && ds.isEnabled())             mode1 |= 0b00100000; // auton mode
 				if (ds.isOperatorControl() && ds.isEnabled())        mode1 |= 0b00010000; // teleop mode
-				if (mSBController.VISION_RING)/*front_vision + 0.5 > matchTimer.get())*/           mode1 |= 0b00001000; // enable front vision leds
+				if (false)/*front_vision + 0.5 > matchTimer.get())*/           mode1 |= 0b00001000; // enable front vision leds
 				//if (rear_vision + 0.5 > matchTimer.get())            mode1 |= 0b00000100; // enable rear vision leds
 				if (ds.isDisabled())                                 mode1 |= 0b00000010; // tell if robot is disabled so we can rainbow at idle
 

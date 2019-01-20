@@ -29,14 +29,13 @@ public class ShuffleboardController {
         return instance;
     }
 
-    private ShuffleboardController() {
-        config = Shuffleboard.getTab("Configuration");
-
+    private ShuffleboardController() {        
+        SmartDashboard.putString("DB/String 9", "Hello World");
+        SmartDashboard.putBoolean("ring", false);
     }
 
-    //SmartDashboard.putNumber("Joystick X value", SGControl.getJX);
-    //SmartDashboard.putNumber("Joystick Y value", SGControl.getJY);
-    //SmartDashboard.putNumber("Battery Voltage", SGControl.getBVolt);
+    
+
 
 
 
@@ -73,6 +72,11 @@ public class ShuffleboardController {
         public boolean VISION_RING = false;
 
 
-
+        public void update() {
+            VISION_RING = SmartDashboard.getBoolean("ring", VISION_RING);
+            SmartDashboard.putBoolean("string", SmartDashboard.getBoolean("ring", false));
+    
+    
+        }
 
 }
