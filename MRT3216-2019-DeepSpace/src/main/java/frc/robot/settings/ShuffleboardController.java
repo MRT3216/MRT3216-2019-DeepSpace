@@ -53,6 +53,9 @@ public class ShuffleboardController {
         public String ntINTAKE_SPEED = "intake_speed";
         public String ntEJECT_SPEED = "eject_speed";
 
+        // Parking
+        //public String ntPISTON_SPEED = "piston_speed";
+
         // Vision
         public String ntVISION_RING = "ring";
 
@@ -70,14 +73,20 @@ public class ShuffleboardController {
         public double INTAKE_SPEED = 0.5;//mTable.getEntry(ntINTAKE_SPEED).getDouble(0.5);;
         public double EJECT_SPEED = 0.5;//mTable.getEntry(ntEJECT_SPEED).getDouble(0.5);;
 
+        // Parking Settings
+        //public double PISTON_SPEEDS = 0.05;
+
         // Vision Settings
         public double ARDUINO_TIMER = 0.1;
         public boolean VISION_RING = false;
+        
 
 
         public void update() {
             VISION_RING = SmartDashboard.getBoolean(ntVISION_RING, VISION_RING);
-            SmartDashboard.putBoolean("string", SmartDashboard.getBoolean(ntVISION_RING, false));
+           // PISTON_SPEEDS = SmartDashboard.getNumber(ntPISTON_SPEED, PISTON_SPEEDS);
+            SmartDashboard.putBoolean("Green Ring", SmartDashboard.getBoolean(ntVISION_RING, false));
+            //SmartDashboard.putNumber("PSpeeds", SmartDashboard.getNumber(ntPISTON_SPEED, 0.05));
         }
 
 }
