@@ -10,30 +10,6 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "0,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/DB/String 9",
-              "_title": "DB/String 9"
-            }
-          },
-          "9,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/DB/Button 3",
-              "_title": "DB/Button 3",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
           "10,0": {
             "size": [
               1,
@@ -67,14 +43,39 @@
               "_title": "DB/String 3"
             }
           },
-          "1,0": {
+          "2,0": {
             "size": [
               1,
               1
             ],
             "content": {
               "_type": "Toggle Switch",
-              "_title": "ring"
+              "_source0": "network_table:///SmartDashboard/ring",
+              "_title": "Vision Ring"
+            }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/string",
+              "_title": "Vision State",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "0,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DB/String 9",
+              "_title": "DB/String 9"
             }
           }
         }
@@ -82,9 +83,9 @@
     }
   ],
   "windowGeometry": {
-    "x": 99.0,
-    "y": 422.0,
-    "width": 1386.0,
-    "height": 788.0
+    "x": -8.0,
+    "y": -8.0,
+    "width": 1382.0,
+    "height": 744.0
   }
 }

@@ -31,7 +31,7 @@ public class ShuffleboardController {
 
     private ShuffleboardController() {        
         SmartDashboard.putString("DB/String 9", "Hello World");
-        SmartDashboard.putBoolean("ring", false);
+        SmartDashboard.putBoolean(ntVISION_RING, VISION_RING);
     }
 
     
@@ -53,6 +53,9 @@ public class ShuffleboardController {
         public String ntINTAKE_SPEED = "intake_speed";
         public String ntEJECT_SPEED = "eject_speed";
 
+        // Vision
+        public String ntVISION_RING = "ring";
+
     /*** These are all the values for the NetworkTables ****/
         // Driving Constants
         public double ACCELERATION_MAX = 3.0;//mTable.getEntry(ntACCELERATION_MAX).getDouble(3.0); // TODO: Calculate new max for new robot
@@ -73,10 +76,8 @@ public class ShuffleboardController {
 
 
         public void update() {
-            VISION_RING = SmartDashboard.getBoolean("ring", VISION_RING);
-            SmartDashboard.putBoolean("string", SmartDashboard.getBoolean("ring", false));
-    
-    
+            VISION_RING = SmartDashboard.getBoolean(ntVISION_RING, VISION_RING);
+            SmartDashboard.putBoolean("string", SmartDashboard.getBoolean(ntVISION_RING, false));
         }
 
 }
