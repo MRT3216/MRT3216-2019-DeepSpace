@@ -28,12 +28,16 @@ public class RobotMap {
 	public static final int USB_GAMEPAD = 0;
 	public static final int USB_CONTROL_STICK = 1;
 
-	// Motor Controller Ports
+	// PWM Ports
 	public static final int DRIVETRAIN_LEFT_MOTOR = 9;
 	public static final int DRIVETRAIN_RIGHT_MOTOR = 0;
 	public static final int ELEVATOR_MOTOR = 2;
 	public static final int INTAKE_MOTOR = 3;
 	public static final int EJECT_MOTOR = 4;
+
+	// CAN Device IDS
+	public static final int CAN_LEFT_TALONSRX = 3;
+	public static final int CAN_RIGHT_TALONSRX = 4;
 
 	// PCM Ports
 	public static final int PANEL_RELEASE_C = 0;

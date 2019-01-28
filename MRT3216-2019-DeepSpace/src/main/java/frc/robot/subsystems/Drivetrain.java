@@ -1,11 +1,16 @@
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
+import frc.robot.commands.Drive;
 import frc.robot.settings.RobotMap;
+import frc.robot.settings.State.BOT;
+
 
 /**
  *
@@ -26,21 +31,20 @@ public class Drivetrain extends Subsystem {
 
 	public Drivetrain() {
 		// log.add("Constructor", LOG_LEVEL);
-		/*
-		 * if (RobotMap.currentBot == RobotMap.Bot.MAINBOT || RobotMap.currentBot ==
-		 * RobotMap.Bot.TESTBOARD) { leftMotors = new VictorSP(RobotMap.PWM_LEFT_MOTOR);
-		 * rightMotors = new VictorSP(RobotMap.PWM_RIGHT_MOTOR);
-		 * 
-		 * initMotor((VictorSP) leftMotors, RobotMap.REVERSE_LEFT_MOTOR);
-		 * initMotor((VictorSP) rightMotors, RobotMap.REVERSE_RIGHT_MOTOR); } else {
-		 * leftMotors = new Talon(RobotMap.PWM_LEFT_MOTOR); rightMotors = new
-		 * Talon(RobotMap.PWM_RIGHT_MOTOR);
-		 * 
-		 * initMotor((Talon) leftMotors, RobotMap.REVERSE_LEFT_MOTOR); initMotor((Talon)
-		 * rightMotors, RobotMap.REVERSE_RIGHT_MOTOR); }
-		 */
-		leftMotors = new VictorSP(RobotMap.DRIVETRAIN_LEFT_MOTOR);
-		rightMotors = new VictorSP(RobotMap.DRIVETRAIN_RIGHT_MOTOR);
+		
+		 if (Robot.currentBot == BOT.MAINBOT) { 
+			leftMotors = new TalonSRX(2);
+		 	rightMotors = new VictorSP(RobotMap.PWM_RIGHT_MOTOR);
+		 
+		 	initMotor((VictorSP) leftMotors, RobotMap.REVERSE_LEFT_MOTOR);
+			initMotor((VictorSP) rightMotors, RobotMap.REVERSE_RIGHT_MOTOR); } 
+		else {
+			 leftMotors = new Talon(RobotMap.DRIVETRAIN_LEFT_MOTOR);
+			 rightMotors = new Talon(RobotMap.DRIVETRAIN_RIGHT_MOTOR);
+		 
+			 initMotor((Talon) leftMotors, false); 
+			 initMotor((Talon) rightMotors, false);
+			 }
 		rightMotors.setInverted(true);
 		leftMotors.stopMotor();
 		rightMotors.stopMotor();
@@ -61,6 +65,7 @@ public class Drivetrain extends Subsystem {
 		 * setDefaultCommand(new Drivetrain_TankDrive()); } else { setDefaultCommand(new
 		 * Drivetrain_ArcadeDrive()); }
 		 */
+		setDefaultCommand(new Drive());
 	}
 
 	/** Methods for setting the motors *************************************/

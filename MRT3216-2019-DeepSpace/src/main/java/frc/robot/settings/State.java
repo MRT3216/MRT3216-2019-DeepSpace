@@ -19,4 +19,8 @@ public class State {
 	public static enum GAME_PIECE {
 		CARGO, PANEL
 	}
+
+	public static enum BOT {
+		TESTBOT, MAINBOT
+	}
 }

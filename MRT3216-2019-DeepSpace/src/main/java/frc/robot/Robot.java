@@ -10,16 +10,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Timer;
 import frc.robot.settings.ShuffleboardController;
+import frc.robot.settings.State.BOT;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +28,7 @@ import frc.robot.subsystems.Intake;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static BOT currentBot = BOT.TESTBOT;
   public static Drivetrain sDrivetrain = new Drivetrain();
   public static Elevator sElevator = new Elevator();
   public static Intake sIntake = new Intake();
@@ -47,8 +47,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    mOI = new OI();
     mSBController = ShuffleboardController.getInstance();
+    mOI = new OI();
     try {
       arduino = new SerialPort(115200, SerialPort.Port.kUSB);
     } catch (Exception e) {
