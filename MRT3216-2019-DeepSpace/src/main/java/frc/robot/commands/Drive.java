@@ -19,14 +19,7 @@ public class Drive extends Command {
 	private Drivetrain s_Drivetrain = Robot.sDrivetrain;
 	public static ShuffleboardController SB = Robot.mSBController;
 
-	private double leftPowerOld, rightPowerOld;
 	private Timer timer = new Timer();
-	private double throttleOld;
-	private double angleOld;
-	private double currentAngle;
-	private double angleAdjustment;
-	private double heading;
-	private boolean hasHeading;
 
 	public Drive() {
 		// Use requires() here to declare subsystem dependencies
@@ -37,8 +30,6 @@ public class Drive extends Command {
 	@Override
 	protected void initialize() {
 		s_Drivetrain.stop();
-		leftPowerOld = 0.0;
-		rightPowerOld = 0.0;
 
 		timer.start();
 		timer.reset();
@@ -66,11 +57,8 @@ public class Drive extends Command {
 		double dt = timer.get();
 		timer.reset();
 
-		throttle = restrictAcceleration(throttle, throttleOld, dt);
+		s_Drivetrain.setDrive(throttle, turn);
 
-		s_Drivetrain.setPower(throttle - turn, throttle + turn);
-
-		throttleOld = throttle;
 	}
 
 	protected void driveStraight(double throttle, double heading) {

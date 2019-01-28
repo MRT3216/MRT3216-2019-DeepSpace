@@ -153,7 +153,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    sDrivetrain.setPower(.5, .5);
+    sDrivetrain.setDrive(.5, 0);
   }
 
   public void updateArduino() {
