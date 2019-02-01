@@ -40,10 +40,10 @@
     <grip:Step name="Resize Image">
       <grip:Input step="2" socket="0"/>
       <grip:Input step="2" socket="1">
-        <value>640</value>
+        <value>640.0</value>
       </grip:Input>
       <grip:Input step="2" socket="2">
-        <value>480</value>
+        <value>480.0</value>
       </grip:Input>
       <grip:Input step="2" socket="3">
         <value>CUBIC</value>
@@ -53,16 +53,16 @@
   </steps>
   <connections>
     <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="true"/>
+      <grip:Input step="2" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
       <grip:Output step="0" socket="0" previewed="true"/>
       <grip:Input step="1" socket="0"/>
     </grip:Connection>
     <grip:Connection>
       <grip:Output source="0" socket="0" previewed="true"/>
       <grip:Input step="0" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
-      <grip:Output step="1" socket="0" previewed="true"/>
-      <grip:Input step="2" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>
@@ -75,11 +75,11 @@
     <deployJvmOptions>-Xmx50m -XX:-OmitStackTraceInFastThrow -XX:+HeapDumpOnOutOfMemoryError -XX:MaxNewSize=16m</deployJvmOptions>
   </settings>
   <codeGenerationSettings>
-    <language>Java</language>
+    <language>Python</language>
     <className>GripPipeline</className>
     <implementWpilibPipeline>false</implementWpilibPipeline>
     <saveDir>C:\Users\21sanaar.MCPS\GRIP</saveDir>
-    <packageName></packageName>
-    <moduleName>grip</moduleName>
+    <packageName>frc.robot</packageName>
+    <moduleName>frc</moduleName>
   </codeGenerationSettings>
 </grip:Pipeline>
