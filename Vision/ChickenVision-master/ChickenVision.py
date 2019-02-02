@@ -703,7 +703,7 @@ if __name__ == "__main__":
     cameraServer = streams[0]
     #Start thread reading camera
     cap = WebcamVideoStream(webcam, cameraServer, image_width, image_height).start()
-
+    
     # (optional) Setup a CvSource. This will send images back to the Dashboard
     # Allocating new images is very expensive, always try to preallocate
     img = np.zeros(shape=(image_height, image_width, 3), dtype=np.uint8)
