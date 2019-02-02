@@ -247,7 +247,7 @@ def findCargo(frame, mask):
 # centerX is center x coordinate of image
 # centerY is center y coordinate of image
 def findBall(contours, image, centerX, centerY):
-    screenHeight, screenWidth, channels = image.shape;
+    screenHeight, screenWidth, channels = image.shape
     #Seen vision targets (correct angle, adjacent to each other)
     cargo = []
 
@@ -724,7 +724,7 @@ if __name__ == "__main__":
         frame = img
         if timestamp == 0:
             # Send the output the error.
-            streamViewer.notifyError(cap.getError());
+            streamViewer.notifyError(cap.getError())
             # skip the rest of the current iteration
             continue
         #Checks if you just want camera for driver (No processing), False by default
@@ -733,7 +733,7 @@ if __name__ == "__main__":
             processed = frame
         else:
             # Checks if you just want camera for Tape processing , False by default
-            if(networkTable.getBoolean("Tape", False))
+            if(networkTable.getBoolean("Tape", False)):
                 #Lowers exposure to 0
                 cap.autoExpose = False
                 boxBlur = blurImg(frame, green_blur)
