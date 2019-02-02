@@ -169,12 +169,12 @@ verticalView = math.atan(math.tan(diagonalView/2) * (verticalAspect / diagonalAs
 H_FOCAL_LENGTH = image_width / (2*math.tan((horizontalView/2)))
 V_FOCAL_LENGTH = image_height / (2*math.tan((verticalView/2)))
 #blurs have to be odd
-green_blur = 7
+green_blur = 0
 orange_blur = 27
 
 # define range of green of retroreflective tape in HSV
-lower_green = np.array([0,220,25])
-upper_green = np.array([101, 255, 255])
+lower_green = np.array([68,82, 69])
+upper_green = np.array([93, 255, 255])
 #define range of orange from cargo ball in HSV
 lower_orange = np.array([0,193,92])
 upper_orange = np.array([23, 255, 255])
@@ -189,16 +189,15 @@ def blurImg(frame, blur_radius):
     blur = cv2.blur(img,(blur_radius,blur_radius))
     return blur
 
-# Masks the video based on a range of hsv colors
+# Masks the video based on a range of HSV colors
 # Takes in a frame, range of color, and a blurred frame, returns a masked frame
 def threshold_video(lower_color, upper_color, blur):
 
 
     # Convert BGR to HSV
-    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
-
+    HSV = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
     # hold the HSV image to get only red colors
-    mask = cv2.inRange(hsv, lower_color, upper_color)
+    mask = cv2.inRange(HSV, lower_color, upper_color)
 
     # Returns the masked imageBlurs video to smooth out image
 
@@ -348,7 +347,7 @@ def findBall(contours, image, centerX, centerY):
 # centerX is center x coordinate of image
 # centerY is center y coordinate of image
 def findTape(contours, image, centerX, centerY):
-    screenHeight, screenWidth, channels = image.shape;
+    screenHeight, screenWidth, channels = image.shape
     #Seen vision targets (correct angle, adjacent to each other)
     targets = []
 
@@ -703,14 +702,15 @@ if __name__ == "__main__":
     cameraServer = streams[0]
     #Start thread reading camera
     cap = WebcamVideoStream(webcam, cameraServer, image_width, image_height).start()
-    
+    # cap = cap.findTape
     # (optional) Setup a CvSource. This will send images back to the Dashboard
     # Allocating new images is very expensive, always try to preallocate
     img = np.zeros(shape=(image_height, image_width, 3), dtype=np.uint8)
     #Start thread outputing stream
+    
     streamViewer = VideoShow(image_width,image_height, cameraServer, frame=img).start()
     #cap.autoExpose=True;
-    tape = False
+    tape = True
     fps = FPS().start()
     #TOTAL_FRAMES = 200;
     # loop forever
@@ -721,6 +721,7 @@ if __name__ == "__main__":
         #Uncomment if camera is mounted upside down
         #frame = flipImage(img)
         #Comment out if camera is mounted upside down
+        # img = findCargo(frame,img)
         frame = img
         if timestamp == 0:
             # Send the output the error.
@@ -733,8 +734,9 @@ if __name__ == "__main__":
             processed = frame
         else:
             # Checks if you just want camera for Tape processing , False by default
-            if(networkTable.getBoolean("Tape", False)):
-                #Lowers exposure to 0
+            # Switched to True, default is False
+            if(networkTable.getBoolean("Tape", True)):
+                # Lowers exposure to 0
                 cap.autoExpose = False
                 boxBlur = blurImg(frame, green_blur)
                 threshold = threshold_video(lower_green, upper_green, boxBlur)
