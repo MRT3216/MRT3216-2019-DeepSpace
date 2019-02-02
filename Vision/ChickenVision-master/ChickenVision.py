@@ -168,13 +168,13 @@ verticalView = math.atan(math.tan(diagonalView/2) * (verticalAspect / diagonalAs
 #Focal Length calculations: https://docs.google.com/presentation/d/1ediRsI-oR3-kwawFJZ34_ZTlQS2SDBLjZasjzZ-eXbQ/pub?start=false&loop=false&slide=id.g12c083cffa_0_165
 H_FOCAL_LENGTH = image_width / (2*math.tan((horizontalView/2)))
 V_FOCAL_LENGTH = image_height / (2*math.tan((verticalView/2)))
-#blurs have to be odd
-green_blur = 0
+# blurs have to be odd
+green_blur = 1
 orange_blur = 27
 
 # define range of green of retroreflective tape in HSV
-lower_green = np.array([68,82, 69])
-upper_green = np.array([93, 255, 255])
+lower_green = np.array([55, 128, 133])
+upper_green = np.array([109, 255, 255])
 #define range of orange from cargo ball in HSV
 lower_orange = np.array([0,193,92])
 upper_orange = np.array([23, 255, 255])
@@ -189,15 +189,16 @@ def blurImg(frame, blur_radius):
     blur = cv2.blur(img,(blur_radius,blur_radius))
     return blur
 
-# Masks the video based on a range of HSV colors
+# Masks the video based on a range of hsv colors
 # Takes in a frame, range of color, and a blurred frame, returns a masked frame
 def threshold_video(lower_color, upper_color, blur):
 
 
     # Convert BGR to HSV
-    HSV = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+
     # hold the HSV image to get only red colors
-    mask = cv2.inRange(HSV, lower_color, upper_color)
+    mask = cv2.inRange(hsv, lower_color, upper_color)
 
     # Returns the masked imageBlurs video to smooth out image
 
@@ -325,6 +326,7 @@ def findBall(contours, image, centerX, centerY):
             xCoord = closestCargo[0]
             finalTarget = calculateYaw(xCoord, centerX, H_FOCAL_LENGTH)
             print("Yaw: " + str(finalTarget))
+            networkTable.putNumber("Yaw", finalTarget)
             # Puts the yaw on screen
             # Draws yaw of target + line where center of target is
             cv2.putText(image, "Yaw: " + str(finalTarget), (40, 40), cv2.FONT_HERSHEY_COMPLEX, .6,
@@ -581,7 +583,7 @@ configFile = "/boot/frc.json"
 
 class CameraConfig: pass
 
-team = None
+team = 3216
 server = False
 cameraConfigs = []
 
@@ -715,6 +717,7 @@ if __name__ == "__main__":
     #TOTAL_FRAMES = 200;
     # loop forever
     while True:
+        
         # Tell the CvSink to grab a frame from the camera and put it
         # in the source image.  If there is an error notify the output.
         timestamp, img = cap.read()
@@ -749,6 +752,8 @@ if __name__ == "__main__":
                 processed = findCargo(frame, threshold)
         #Puts timestamp of camera on netowrk tables
         networkTable.putNumber("VideoTimestamp", timestamp)
+        
+        # networkTable.putBoolean("Driver", False)
         streamViewer.frame = processed
         # update the FPS counter
         fps.update()
