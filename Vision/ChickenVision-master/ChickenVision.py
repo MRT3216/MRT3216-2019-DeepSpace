@@ -326,7 +326,7 @@ def findBall(contours, image, centerX, centerY):
             xCoord = closestCargo[0]
             finalTarget = calculateYaw(xCoord, centerX, H_FOCAL_LENGTH)
             print("Yaw: " + str(finalTarget))
-            networkTable.putNumber("Yaw", finalTarget)
+            networkTable.putString("Yaw", finalTarget)
             # Puts the yaw on screen
             # Draws yaw of target + line where center of target is
             cv2.putText(image, "Yaw: " + str(finalTarget), (40, 40), cv2.FONT_HERSHEY_COMPLEX, .6,
