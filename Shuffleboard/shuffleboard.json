@@ -128,25 +128,6 @@
               "imageWidth": -1,
               "imageHeight": -1
             }
-          },
-          "6,4": {
-            "size": [
-              3,
-              2
-            ],
-            "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://rPi Camera 1",
-              "_title": "rPi Camera 1",
-              "Crosshair/Show crosshair": true,
-              "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": true,
-              "Controls/Rotation": "NONE",
-              "compression": 0.0,
-              "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
-            }
           }
         }
       }
