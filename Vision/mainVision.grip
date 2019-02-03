@@ -11,7 +11,7 @@
         <value>MEDIAN</value>
       </grip:Input>
       <grip:Input step="0" socket="2">
-        <value>4.504504504504505</value>
+        <value>0.9009009009009015</value>
       </grip:Input>
       <grip:Output step="0" socket="0" previewed="true"/>
     </grip:Step>
@@ -57,12 +57,12 @@
       <grip:Input step="2" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output step="0" socket="0" previewed="true"/>
-      <grip:Input step="1" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
       <grip:Output source="0" socket="0" previewed="true"/>
       <grip:Input step="0" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="0" socket="0" previewed="true"/>
+      <grip:Input step="1" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>
