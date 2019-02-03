@@ -43,7 +43,7 @@
               "_title": "DB/String 3"
             }
           },
-          "2,0": {
+          "5,0": {
             "size": [
               1,
               1
@@ -77,15 +77,85 @@
               "_source0": "network_table:///SmartDashboard/DB/String 9",
               "_title": "DB/String 9"
             }
+          },
+          "6,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Green Ring",
+              "_title": "Green Ring",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "5,1": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://rPi Camera 0",
+              "_title": "rPi Camera 0",
+              "Crosshair/Show crosshair": false,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": 100.0,
+              "fps": 15,
+              "imageWidth": -1,
+              "imageHeight": -1
+            }
+          },
+          "8,1": {
+            "size": [
+              4,
+              3
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://stream",
+              "_title": "stream",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": 100.0,
+              "fps": 15,
+              "imageWidth": -1,
+              "imageHeight": -1
+            }
+          },
+          "6,4": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://rPi Camera 1",
+              "_title": "rPi Camera 1",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": 0.0,
+              "fps": -1,
+              "imageWidth": -1,
+              "imageHeight": -1
+            }
           }
         }
       }
     }
   ],
   "windowGeometry": {
-    "x": -8.0,
+    "x": 1912.0,
     "y": -8.0,
-    "width": 1382.0,
-    "height": 744.0
+    "width": 1936.0,
+    "height": 1056.0
   }
 }
