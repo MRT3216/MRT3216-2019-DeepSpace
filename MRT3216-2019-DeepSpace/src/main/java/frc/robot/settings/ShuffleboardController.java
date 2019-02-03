@@ -7,10 +7,8 @@
 
 package frc.robot.settings;
 
-import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -18,8 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ShuffleboardController {
     private static ShuffleboardController instance;
-    private ShuffleboardTab config;
-
+    private static NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
+    private static NetworkTable vision;
 
     //Singleton Code
     public static ShuffleboardController getInstance() {
@@ -30,6 +28,7 @@ public class ShuffleboardController {
     }
 
     private ShuffleboardController() {        
+        vision = ntInstance.getTable(ntVISION_TABLE);
         SmartDashboard.putString("DB/String 9", "Hello World");
         SmartDashboard.putBoolean(ntVISION_RING, VISION_RING);
     }
@@ -57,7 +56,10 @@ public class ShuffleboardController {
         //public String ntPISTON_SPEED = "piston_speed";
 
         // Vision
+        public String ntVISION_TABLE = "ChickenVision";
         public String ntVISION_RING = "ring";
+        public String ntTAPE_DETECTED = "tapeDetected";
+        public String ntTAPE_YAW = "tapeYaw";
 
     /*** These are all the values for the NetworkTables ****/
         // Driving Constants
@@ -79,11 +81,15 @@ public class ShuffleboardController {
         // Vision Settings
         public double ARDUINO_TIMER = 0.1;
         public boolean VISION_RING = false;
-        
 
+        public boolean TAPE_DETECTED = false;
+        public double TAPE_YAW = 0;
+    
 
         public void update() {
             VISION_RING = SmartDashboard.getBoolean(ntVISION_RING, VISION_RING);
+            TAPE_DETECTED = vision.getEntry(ntTAPE_DETECTED).getBoolean(false);
+            TAPE_YAW = vision.getEntry(ntTAPE_YAW).getDouble(TAPE_YAW);
            // PISTON_SPEEDS = SmartDashboard.getNumber(ntPISTON_SPEED, PISTON_SPEEDS);
             SmartDashboard.putBoolean("Green Ring", SmartDashboard.getBoolean(ntVISION_RING, false));
             //SmartDashboard.putNumber("PSpeeds", SmartDashboard.getNumber(ntPISTON_SPEED, 0.05));
