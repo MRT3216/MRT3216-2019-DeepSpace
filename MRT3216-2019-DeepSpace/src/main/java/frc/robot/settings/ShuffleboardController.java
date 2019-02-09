@@ -31,6 +31,7 @@ public class ShuffleboardController {
         vision = ntInstance.getTable(ntVISION_TABLE);
         SmartDashboard.putString("DB/String 9", "Hello World");
         SmartDashboard.putBoolean(ntVISION_RING, VISION_RING);
+        SmartDashboard.putNumber(ntTAPE_kP, TAPE_kP);
     }
 
     
@@ -60,6 +61,7 @@ public class ShuffleboardController {
         public String ntVISION_RING = "ring";
         public String ntTAPE_DETECTED = "tapeDetected";
         public String ntTAPE_YAW = "tapeYaw";
+        public String ntTAPE_kP = "tape_kp";
 
     /*** These are all the values for the NetworkTables ****/
         // Driving Constants
@@ -84,12 +86,14 @@ public class ShuffleboardController {
 
         public boolean TAPE_DETECTED = false;
         public double TAPE_YAW = 0;
+        public double TAPE_kP = 1;
     
 
         public void update() {
             VISION_RING = SmartDashboard.getBoolean(ntVISION_RING, VISION_RING);
             TAPE_DETECTED = vision.getEntry(ntTAPE_DETECTED).getBoolean(false);
             TAPE_YAW = vision.getEntry(ntTAPE_YAW).getDouble(TAPE_YAW);
+            TAPE_kP = SmartDashboard.getNumber(ntTAPE_kP, TAPE_kP);
            // PISTON_SPEEDS = SmartDashboard.getNumber(ntPISTON_SPEED, PISTON_SPEEDS);
             SmartDashboard.putBoolean("Green Ring", SmartDashboard.getBoolean(ntVISION_RING, false));
             //SmartDashboard.putNumber("PSpeeds", SmartDashboard.getNumber(ntPISTON_SPEED, 0.05));

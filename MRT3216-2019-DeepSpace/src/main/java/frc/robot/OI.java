@@ -66,7 +66,7 @@ public class OI {
     joystickValue = scaleJoystick(joystickValue);
     // log.add("getLeftY (" + joystickValue + ")", LOG_LEVEL);
     // log.add("Deadzone = " + RobotMap.JOYSTICK_DEADZONE, LOG_LEVEL);
-    return joystickValue;
+    return -1 * joystickValue;
   }
 
   public double getRightX() {

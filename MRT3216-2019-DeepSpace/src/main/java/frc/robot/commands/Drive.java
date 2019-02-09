@@ -53,7 +53,6 @@ public class Drive extends Command {
 	}
 
 	private void execute(double throttle, double turn) {
-		throttle *= -1;
 		double dt = timer.get();
 		timer.reset();
 
