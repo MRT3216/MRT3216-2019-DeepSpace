@@ -9,6 +9,7 @@ package frc.robot;
 
 import frc.robot.commands.EjectCargo;
 import frc.robot.commands.IntakeCargo;
+import frc.robot.commands.VisionDrive;
 import frc.robot.settings.RobotMap;
 import frc.robot.settings.ShuffleboardController;
 
@@ -56,7 +57,8 @@ public class OI {
     controlStick.Trigger.whileHeld(new IntakeCargo());// not sure the difference between whileHeld() and whileActive()
                                                       // Java Docs aren't too helpful or clear
     controlStick.button2.whileHeld(new EjectCargo());
-
+    gamepad.RB.whileHeld(new VisionDrive());
+    System.out.println("OI constructed");
   }
 
   // Gamepad Functions

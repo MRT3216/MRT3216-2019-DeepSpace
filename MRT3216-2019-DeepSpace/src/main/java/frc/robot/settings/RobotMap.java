@@ -36,8 +36,8 @@ public class RobotMap {
 	public static final int EJECT_MOTOR = 4;
 
 	// CAN Device IDS
-	public static final int CAN_LEFT_TALONSRX = 3;
-	public static final int CAN_RIGHT_TALONSRX = 4;
+	public static final int CAN_LEFT_TALONSRX = 1;
+	public static final int CAN_RIGHT_TALONSRX = 0;
 
 	// PCM Ports
 	public static final int PANEL_RELEASE_C = 0;

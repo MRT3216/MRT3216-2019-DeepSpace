@@ -15,7 +15,6 @@ import frc.robot.subsystems.Drivetrain;
 
 public class VisionDrive extends Command {
   private Drivetrain s_Drivetrain = Robot.sDrivetrain;
-  private OI m_oi = Robot.mOI;
   public static ShuffleboardController SB = Robot.mSBController;
 
   public VisionDrive() {
@@ -31,10 +30,12 @@ public class VisionDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    OI m_oi = Robot.mOI; //needed or else the command throws a null pointer.
     double throttle = m_oi.getLeftY();
     double turn = 0.0;
     if(SB.TAPE_DETECTED) {
       double yaw = SB.TAPE_YAW;
+      turn = yaw * SB.TAPE_kP;
     }
     s_Drivetrain.setDrive(throttle, turn);
   }
