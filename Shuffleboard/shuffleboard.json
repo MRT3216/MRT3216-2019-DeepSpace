@@ -54,19 +54,6 @@
               "_title": "Vision Ring"
             }
           },
-          "3,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/string",
-              "_title": "Vision State",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
           "0,0": {
             "size": [
               1,
@@ -123,7 +110,7 @@
               "Crosshair/Crosshair color": "#FFFFFFFF",
               "Controls/Show controls": true,
               "Controls/Rotation": "NONE",
-              "compression": 100.0,
+              "compression": 13.073770491803277,
               "fps": 15,
               "imageWidth": -1,
               "imageHeight": -1
@@ -138,6 +125,52 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/tape_kp",
               "_title": "tape_kp"
+            }
+          },
+          "2,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/tape_kd",
+              "_title": "tape_kd"
+            }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/tape_ki",
+              "_title": "tape_ki"
+            }
+          },
+          "4,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///ChickenVision/tapeDetected",
+              "_title": "ChickenVision/tapeDetected",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "1,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/tape_scaler",
+              "_title": "tape_scaler"
             }
           }
         }

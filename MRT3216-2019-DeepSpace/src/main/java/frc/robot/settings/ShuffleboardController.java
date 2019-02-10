@@ -32,6 +32,9 @@ public class ShuffleboardController {
         SmartDashboard.putString("DB/String 9", "Hello World");
         SmartDashboard.putBoolean(ntVISION_RING, VISION_RING);
         SmartDashboard.putNumber(ntTAPE_kP, TAPE_kP);
+        SmartDashboard.putNumber(ntTAPE_kD, TAPE_kD);
+        SmartDashboard.putNumber(ntTAPE_kI, TAPE_kI);
+        SmartDashboard.putNumber(ntTAPE_SCALER, TAPE_SCALER);
     }
 
     
@@ -62,6 +65,9 @@ public class ShuffleboardController {
         public String ntTAPE_DETECTED = "tapeDetected";
         public String ntTAPE_YAW = "tapeYaw";
         public String ntTAPE_kP = "tape_kp";
+        public String ntTAPE_kD = "tape_kd";
+        public String ntTAPE_kI = "tape_ki";
+        public String ntTAPE_SCALER = "tape_scaler";
 
     /*** These are all the values for the NetworkTables ****/
         // Driving Constants
@@ -86,7 +92,10 @@ public class ShuffleboardController {
 
         public boolean TAPE_DETECTED = false;
         public double TAPE_YAW = 0;
-        public double TAPE_kP = 1;
+        public double TAPE_kP = 0.05 ;
+        public double TAPE_kD = 0.0;
+        public double TAPE_kI = 0.0;
+        public double TAPE_SCALER = 1.0;
     
 
         public void update() {
@@ -94,7 +103,10 @@ public class ShuffleboardController {
             TAPE_DETECTED = vision.getEntry(ntTAPE_DETECTED).getBoolean(false);
             TAPE_YAW = vision.getEntry(ntTAPE_YAW).getDouble(TAPE_YAW);
             TAPE_kP = SmartDashboard.getNumber(ntTAPE_kP, TAPE_kP);
-           // PISTON_SPEEDS = SmartDashboard.getNumber(ntPISTON_SPEED, PISTON_SPEEDS);
+            TAPE_kD = SmartDashboard.getNumber(ntTAPE_kD, TAPE_kD);
+            TAPE_kI = SmartDashboard.getNumber(ntTAPE_kI, TAPE_kD);
+            TAPE_SCALER = SmartDashboard.getNumber(ntTAPE_SCALER, TAPE_SCALER);
+            // PISTON_SPEEDS = SmartDashboard.getNumber(ntPISTON_SPEED, PISTON_SPEEDS);
             SmartDashboard.putBoolean("Green Ring", SmartDashboard.getBoolean(ntVISION_RING, false));
             //SmartDashboard.putNumber("PSpeeds", SmartDashboard.getNumber(ntPISTON_SPEED, 0.05));
         }

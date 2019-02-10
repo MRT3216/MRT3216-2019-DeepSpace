@@ -16,6 +16,7 @@ import frc.robot.subsystems.Drivetrain;
 public class VisionDrive extends Command {
   private Drivetrain s_Drivetrain = Robot.sDrivetrain;
   public static ShuffleboardController SB = Robot.mSBController;
+  private double yaw, yaw_old, derivative, integral = 0; 
 
   public VisionDrive() {
     requires(s_Drivetrain);
@@ -34,8 +35,11 @@ public class VisionDrive extends Command {
     double throttle = m_oi.getLeftY();
     double turn = 0.0;
     if(SB.TAPE_DETECTED) {
-      double yaw = SB.TAPE_YAW;
-      turn = yaw * SB.TAPE_kP;
+      yaw = SB.TAPE_YAW;
+      derivative = (yaw - yaw_old) / .02;
+      integral += yaw * (0.2);
+      turn = (yaw * SB.TAPE_kP) + (derivative * SB.TAPE_kD) + (integral * SB.TAPE_kI);
+      yaw_old = yaw; 
     }
     s_Drivetrain.setDrive(throttle, turn);
   }
