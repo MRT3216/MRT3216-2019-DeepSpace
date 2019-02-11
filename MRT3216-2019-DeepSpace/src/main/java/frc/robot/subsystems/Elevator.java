@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.Elevator_Drive;
 import frc.robot.settings.RobotMap;
 import frc.robot.settings.State;
 import frc.robot.settings.State.ELEVATOR_POS;
@@ -69,6 +70,6 @@ public class Elevator extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		// setDefaultCommand(new Elevator_Move());
+		setDefaultCommand(new Elevator_Drive());
 	}
 }
