@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
@@ -26,24 +27,21 @@ public class Drivetrain extends Subsystem {
 	// private Logger log = new Logger(LOG_LEVEL, getName());
 	double leftPowerOld, rightPowerOld;
 	Timer timer = new Timer();
-	private TalonSRX leftMotors, rightMotors;
+	private TalonSRX leftMaster, rightMaster;
+	private VictorSPX leftSlave, rightSlave;
 
 	public Drivetrain() {
 		// log.add("Constructor", LOG_LEVEL);
 		
 		 //if (Robot.currentBot == BOT.MAINBOT) { 
-			leftMotors = new TalonSRX(RobotMap.CAN_LEFT_TALONSRX);
-			rightMotors = new TalonSRX(RobotMap.CAN_RIGHT_TALONSRX);
-			rightMotors.setInverted(true);
-		 //} 
-		/*else {
-			 Talon leftMotors = new Talon(RobotMap.DRIVETRAIN_LEFT_MOTOR);
-			 Talon rightMotors = new Talon(RobotMap.DRIVETRAIN_RIGHT_MOTOR);
-		 
-			 initMotor((Talon) leftMotors, false); 
-			 initMotor((Talon) rightMotors, false);
-			 }
- */
+			leftMaster = new TalonSRX(RobotMap.CAN_LEFT_TALONSRX);
+			leftSlave = new VictorSPX(RobotMap.CAN_LEFT_VICTORSPX);
+			leftSlave.follow(leftMaster);
+			rightMaster = new TalonSRX(RobotMap.CAN_RIGHT_TALONSRX);
+			rightMaster.setInverted(true);
+			rightSlave = new VictorSPX(RobotMap.CAN_RIGHT_VICTORSPX);
+			rightSlave.setInverted(true);
+			rightSlave.follow(rightMaster);
 	}
 
 	private void initMotor(Talon motor, boolean reverse) {
@@ -63,8 +61,8 @@ public class Drivetrain extends Subsystem {
 	/** Methods for setting the motors *************************************/
 
 	public void setDrive(double forward, double turn) {
-		leftMotors.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, +turn);
-		rightMotors.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, -turn);
+		leftMaster.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, +turn);
+		rightMaster.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, -turn);
 	}
 
 	public void driveStraight(double power) {

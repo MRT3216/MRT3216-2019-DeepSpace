@@ -25,8 +25,8 @@ public class PanelManipulator extends Subsystem {
 	private DoubleSolenoid panelExtend;
 
 	public PanelManipulator() {
-		panelRelease = new DoubleSolenoid(RobotMap.PANEL_RELEASE_O, RobotMap.PANEL_RELEASE_C);
-		panelExtend = new DoubleSolenoid(RobotMap.PANEL_EXTEND_O, RobotMap.PANEL_EXTEND_C);
+		panelRelease = new DoubleSolenoid(0, RobotMap.PANEL_RELEASE_O, RobotMap.PANEL_RELEASE_C);
+		panelExtend = new DoubleSolenoid(0, RobotMap.PANEL_EXTEND_O, RobotMap.PANEL_EXTEND_C);
 
 		initPneumatics();
 	}

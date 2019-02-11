@@ -29,15 +29,15 @@ public class RobotMap {
 	public static final int USB_CONTROL_STICK = 1;
 
 	// PWM Ports
-	public static final int DRIVETRAIN_LEFT_MOTOR = 9;
-	public static final int DRIVETRAIN_RIGHT_MOTOR = 0;
-	public static final int ELEVATOR_MOTOR = 2;
-	public static final int INTAKE_MOTOR = 3;
-	public static final int EJECT_MOTOR = 4;
+	public static final int ELEVATOR_MOTOR = 7;
+	public static final int INTAKE_MOTOR = 3;//?
+	public static final int EJECT_MOTOR = 4;//?
 
 	// CAN Device IDS
 	public static final int CAN_LEFT_TALONSRX = 1;
+	public static final int CAN_LEFT_VICTORSPX = 1;
 	public static final int CAN_RIGHT_TALONSRX = 0;
+	public static final int CAN_RIGHT_VICTORSPX = 0;
 
 	// PCM Ports
 	public static final int PANEL_RELEASE_C = 0;
@@ -46,6 +46,6 @@ public class RobotMap {
 	public static final int FRONT_LIFT_O = 3;
 	public static final int REAR_LIFT_C = 4;
 	public static final int REAR_LIFT_O = 5;
-	public static final int PANEL_EXTEND_C = 6;
-	public static final int PANEL_EXTEND_O = 7;
+	public static final int PANEL_EXTEND_C = 3;
+	public static final int PANEL_EXTEND_O = 2;
 }
