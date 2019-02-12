@@ -60,7 +60,7 @@ public class Elevator extends Subsystem {
 		power = Math.min(1.0, power);
 		power = Math.max(-1.0, power);
 		
-		if((!bottomLimit.get() && power < 0)) {
+		if((!bottomLimit.get() && power > 0)) {
 			return 0.0; 
 		} 
 		else { 
