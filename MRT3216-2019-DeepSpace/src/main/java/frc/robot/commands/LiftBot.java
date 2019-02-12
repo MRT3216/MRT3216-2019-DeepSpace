@@ -30,7 +30,7 @@ public class LiftBot extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    addParallel(new LiftFront(true));
-    addParallel(new LiftRear(true));
+    addSequential(new LiftFront(true));
+    addSequential(new LiftRear(true));
   }
 }

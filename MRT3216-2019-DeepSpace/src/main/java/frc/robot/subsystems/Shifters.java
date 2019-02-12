@@ -23,7 +23,9 @@ public class Shifters extends Subsystem {
 	private final DoubleSolenoid.Value low = DoubleSolenoid.Value.kReverse;
   
   public Shifters() {
+    System.out.println("Shifters started");
     shifter = new DoubleSolenoid(1, RobotMap.SHIFTER_HIGH, RobotMap.SHIFTER_LOW);
+    System.out.println("Shifters Finished");
   }
 
   public void shift(boolean high) {

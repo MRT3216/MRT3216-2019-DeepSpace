@@ -23,12 +23,16 @@ public class Lifter extends Subsystem {
   private DoubleSolenoid frontLift;
 	private DoubleSolenoid rearLift;
 
+	public Lifter() {
+		frontLift = new DoubleSolenoid(0, RobotMap.FRONT_LIFT_O, RobotMap.FRONT_LIFT_C);
+		rearLift = new DoubleSolenoid(1, RobotMap.REAR_LIFT_O, RobotMap.REAR_LIFT_C);
+	}
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    frontLift = new DoubleSolenoid(0, RobotMap.FRONT_LIFT_O, RobotMap.FRONT_LIFT_C);
-		rearLift = new DoubleSolenoid(1, RobotMap.REAR_LIFT_O, RobotMap.REAR_LIFT_C);
+    
   }
 
   public void initPneumatics() {

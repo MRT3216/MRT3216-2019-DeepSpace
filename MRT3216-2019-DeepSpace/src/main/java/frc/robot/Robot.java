@@ -22,9 +22,9 @@ import frc.robot.settings.State.BOT;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Lifter;
 import frc.robot.subsystems.PanelManipulator;
 import frc.robot.subsystems.Shifters;
-import frc.robot.subsystems.Lifter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -92,7 +92,6 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     mSBController.update();
     updateArduino();
-    SmartDashboard.putBoolean("dI", dI.get());
   }
 
   /**

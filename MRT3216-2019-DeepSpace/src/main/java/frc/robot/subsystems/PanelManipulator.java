@@ -25,9 +25,10 @@ public class PanelManipulator extends Subsystem {
 	private DoubleSolenoid panelExtend;
 
 	public PanelManipulator() {
+		System.out.println("PanelMan. Constructor start");
 		panelRelease = new DoubleSolenoid(0, RobotMap.PANEL_RELEASE_O, RobotMap.PANEL_RELEASE_C);
 		panelExtend = new DoubleSolenoid(0, RobotMap.PANEL_EXTEND_O, RobotMap.PANEL_EXTEND_C);
-
+		System.out.println("PanelMan. Initialized panel pneumatics");
 		initPneumatics();
 	}
 
