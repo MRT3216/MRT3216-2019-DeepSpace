@@ -56,9 +56,6 @@ public class ShuffleboardController {
         public String ntINTAKE_SPEED = "intake_speed";
         public String ntEJECT_SPEED = "eject_speed";
 
-        // Parking
-        //public String ntPISTON_SPEED = "piston_speed";
-
         // Vision
         public String ntVISION_TABLE = "ChickenVision";
         public String ntVISION_RING = "ring";
@@ -80,8 +77,8 @@ public class ShuffleboardController {
         public double JOYSTICK_DEADZONE = 0.05;//mTable.getEntry(ntJOYSTICK_DEADZONE).getDouble(0.05);
 
         // Intake Constants
-        public double INTAKE_SPEED = 0.5;//mTable.getEntry(ntINTAKE_SPEED).getDouble(0.5);;
-        public double EJECT_SPEED = 0.5;//mTable.getEntry(ntEJECT_SPEED).getDouble(0.5);;
+        public double INTAKE_SPEED = 0.25;//mTable.getEntry(ntINTAKE_SPEED).getDouble(0.5);;
+        public double EJECT_SPEED = 0.25;//mTable.getEntry(ntEJECT_SPEED).getDouble(0.5);;
 
         // Parking Settings
         //public double PISTON_SPEEDS = 0.05;
@@ -99,6 +96,8 @@ public class ShuffleboardController {
     
 
         public void update() {
+            INTAKE_SPEED = SmartDashboard.getNumber(ntINTAKE_SPEED, INTAKE_SPEED);
+            EJECT_SPEED = SmartDashboard.getNumber(ntEJECT_SPEED, EJECT_SPEED);
             VISION_RING = SmartDashboard.getBoolean(ntVISION_RING, VISION_RING);
             TAPE_DETECTED = vision.getEntry(ntTAPE_DETECTED).getBoolean(false);
             TAPE_YAW = vision.getEntry(ntTAPE_YAW).getDouble(TAPE_YAW);

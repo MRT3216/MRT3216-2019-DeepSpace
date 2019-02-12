@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -14,11 +16,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.settings.ShuffleboardController;
 import frc.robot.settings.State.BOT;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.PanelManipulator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,11 +36,14 @@ public class Robot extends TimedRobot {
   public static Drivetrain sDrivetrain = new Drivetrain();
   public static Elevator sElevator = new Elevator();
   public static Intake sIntake = new Intake();
+  public static PanelManipulator sPanelManipulator = new PanelManipulator();
+  public static Compressor sCompressor;
   public static OI mOI;
   public static ShuffleboardController mSBController;
   public static SerialPort arduino;
   public static Timer arduinoTimer;
   public static DriverStation ds;
+  public static DigitalInput dI;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -49,6 +56,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     mSBController = ShuffleboardController.getInstance();
     mOI = new OI();
+    sCompressor = new Compressor(1);
+    dI = new DigitalInput(0);
+    sCompressor.setClosedLoopControl(true);
     try {
       arduino = new SerialPort(115200, SerialPort.Port.kUSB);
     } catch (Exception e) {
@@ -76,6 +86,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     mSBController.update();
     updateArduino();
+    SmartDashboard.putBoolean("dI", dI.get());
   }
 
   /**
