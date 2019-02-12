@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.Elevator_Drive;
 import frc.robot.settings.RobotMap;
@@ -14,10 +15,12 @@ import frc.robot.settings.State.GAME_PIECE;
 public class Elevator extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private Talon motor;
+	private Victor motor;
+	private DigitalInput bottomLimit;
 
 	public Elevator() {
-		motor = new Talon(RobotMap.ELEVATOR_MOTOR);
+		motor = new Victor(RobotMap.ELEVATOR_MOTOR);
+		bottomLimit = new DigitalInput(RobotMap.BOTTOM_LIMIT);
 	}
 
 	public void setPower(double power) {
@@ -56,11 +59,13 @@ public class Elevator extends Subsystem {
 	private double safetyCheck(double power) {
 		power = Math.min(1.0, power);
 		power = Math.max(-1.0, power);
-		/*
-		 * if((!topSwitch.get() && power > 0) || (!bottomSwitch.get() && power < 0)) {
-		 * return power; } else { return 0.0; }
-		 */
-		return power;
+		
+		if((!bottomLimit.get() && power < 0)) {
+			return 0.0; 
+		} 
+		else { 
+			return power; 
+		}
 	}
 
 	private double heightCheck(double power) {

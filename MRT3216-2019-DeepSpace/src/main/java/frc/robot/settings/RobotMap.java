@@ -28,6 +28,9 @@ public class RobotMap {
 	public static final int USB_GAMEPAD = 0;
 	public static final int USB_CONTROL_STICK = 1;
 
+	// Digital Input
+	public static final int BOTTOM_LIMIT = 9;
+
 	// PWM Ports
 	public static final int ELEVATOR_MOTOR = 7;
 	public static final int INTAKE_MOTOR = 3;//?
