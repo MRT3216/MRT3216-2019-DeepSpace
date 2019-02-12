@@ -29,12 +29,13 @@ public class ShuffleboardController {
 
     private ShuffleboardController() {        
         vision = ntInstance.getTable(ntVISION_TABLE);
-        SmartDashboard.putString("DB/String 9", "Hello World");
         SmartDashboard.putBoolean(ntVISION_RING, VISION_RING);
         SmartDashboard.putNumber(ntTAPE_kP, TAPE_kP);
         SmartDashboard.putNumber(ntTAPE_kD, TAPE_kD);
         SmartDashboard.putNumber(ntTAPE_kI, TAPE_kI);
         SmartDashboard.putNumber(ntTAPE_SCALER, TAPE_SCALER);
+        SmartDashboard.putNumber(ntINTAKE_SPEED, INTAKE_SPEED);
+        SmartDashboard.putNumber(ntEJECT_SPEED, EJECT_SPEED);
     }
 
     

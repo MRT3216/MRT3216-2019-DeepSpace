@@ -27,8 +27,8 @@ public class Lifter extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    frontLift = new DoubleSolenoid(RobotMap.FRONT_LIFT_O, RobotMap.FRONT_LIFT_C);
-		rearLift = new DoubleSolenoid(RobotMap.REAR_LIFT_O, RobotMap.REAR_LIFT_C);
+    frontLift = new DoubleSolenoid(0, RobotMap.FRONT_LIFT_O, RobotMap.FRONT_LIFT_C);
+		rearLift = new DoubleSolenoid(1, RobotMap.REAR_LIFT_O, RobotMap.REAR_LIFT_C);
   }
 
   public void initPneumatics() {

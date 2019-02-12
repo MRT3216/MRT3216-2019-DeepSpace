@@ -23,6 +23,8 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.PanelManipulator;
+import frc.robot.subsystems.Shifters;
+import frc.robot.subsystems.Lifter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,6 +39,8 @@ public class Robot extends TimedRobot {
   public static Elevator sElevator = new Elevator();
   public static Intake sIntake = new Intake();
   public static PanelManipulator sPanelManipulator = new PanelManipulator();
+  public static Shifters sShifters = new Shifters();
+  public static Lifter sLift = new Lifter();
   public static Compressor sCompressor;
   public static OI mOI;
   public static ShuffleboardController mSBController;
@@ -57,8 +61,10 @@ public class Robot extends TimedRobot {
     mSBController = ShuffleboardController.getInstance();
     mOI = new OI();
     sCompressor = new Compressor(1);
-    dI = new DigitalInput(0);
     sCompressor.setClosedLoopControl(true);
+    sShifters.shift(true);
+    sLift.raiseFront(false);
+    sLift.raiseRear(false);
     try {
       arduino = new SerialPort(115200, SerialPort.Port.kUSB);
     } catch (Exception e) {

@@ -43,12 +43,14 @@ public class RobotMap {
 	public static final int CAN_RIGHT_VICTORSPX = 0;
 
 	// PCM Ports
-	public static final int PANEL_RELEASE_C = 0;
-	public static final int PANEL_RELEASE_O = 1;
-	public static final int FRONT_LIFT_C = 2;
-	public static final int FRONT_LIFT_O = 3;
-	public static final int REAR_LIFT_C = 4;
-	public static final int REAR_LIFT_O = 5;
-	public static final int PANEL_EXTEND_C = 3;
-	public static final int PANEL_EXTEND_O = 2;
+	public static final int PANEL_RELEASE_C = 0;//0
+	public static final int PANEL_RELEASE_O = 1;//0
+	public static final int FRONT_LIFT_C = 4;//0
+	public static final int FRONT_LIFT_O = 5;//0
+	public static final int REAR_LIFT_C = 2;//1
+	public static final int REAR_LIFT_O = 3;//1
+	public static final int PANEL_EXTEND_C = 2;//0
+	public static final int PANEL_EXTEND_O = 3;//0
+	public static final int SHIFTER_LOW =4;//1
+	public static final int SHIFTER_HIGH =5;//1
 }

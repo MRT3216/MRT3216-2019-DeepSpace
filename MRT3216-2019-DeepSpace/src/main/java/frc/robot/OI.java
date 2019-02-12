@@ -10,8 +10,11 @@ package frc.robot;
 import frc.robot.commands.EjectCargo;
 import frc.robot.commands.GrabPanel;
 import frc.robot.commands.IntakeCargo;
+import frc.robot.commands.LiftBot;
+import frc.robot.commands.LiftFront;
+import frc.robot.commands.LiftRear;
 import frc.robot.commands.PopPanel;
-import frc.robot.commands.ReleasePanel;
+import frc.robot.commands.Shift;
 import frc.robot.commands.VisionDrive;
 import frc.robot.settings.RobotMap;
 import frc.robot.settings.ShuffleboardController;
@@ -64,6 +67,11 @@ public class OI {
     controlStick.button3.whenPressed(new GrabPanel(false));
     controlStick.button6.whenPressed(new PopPanel());
     gamepad.RB.whileHeld(new VisionDrive());
+    gamepad.A.whenPressed(new Shift(false));
+    gamepad.B.whenPressed(new Shift(true));
+    gamepad.LB.whenPressed(new LiftBot());
+    gamepad.Y.whenPressed(new LiftFront(false));
+    gamepad.X.whenPressed(new LiftRear(false));
     System.out.println("OI constructed");
   }
 
