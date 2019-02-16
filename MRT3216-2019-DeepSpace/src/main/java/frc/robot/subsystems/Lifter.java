@@ -8,7 +8,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.LiftDrive;
 import frc.robot.settings.RobotMap;
 
 /**
@@ -22,22 +24,26 @@ public class Lifter extends Subsystem {
 
   private DoubleSolenoid frontLift;
 	private DoubleSolenoid rearLift;
+	private Victor liftMotor;
 
 	public Lifter() {
 		frontLift = new DoubleSolenoid(0, RobotMap.FRONT_LIFT_O, RobotMap.FRONT_LIFT_C);
 		rearLift = new DoubleSolenoid(1, RobotMap.REAR_LIFT_O, RobotMap.REAR_LIFT_C);
+		liftMotor = new Victor(RobotMap.LIFT_MOTOR);
+		initPneumatics();
 	}
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    
+    setDefaultCommand(new LiftDrive());
   }
 
-  public void initPneumatics() {
+  private void initPneumatics() {
 		raiseFront(false);
 		raiseRear(false);
+		liftMotor.set(0);
   }
   
   
@@ -63,5 +69,9 @@ public class Lifter extends Subsystem {
 				rearLift.set(reverse);
 			}
 		}
+	}
+
+	public void driveLift(double power) {
+		liftMotor.set(power);
 	}
 }

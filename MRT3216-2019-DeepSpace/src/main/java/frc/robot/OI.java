@@ -93,6 +93,10 @@ public class OI {
     return joystickValue;
   }
 
+  public double getLeftTrigger() {
+    return gamepad.getRawAxis(Gamepad.LEFT_TRIGGER);
+  }
+
   // Control Stick Functions
   public double getStickY() {
     double joystickValue = controlStick.getRawAxis(ControlStick.JOYSTICK_Y_AXIS);

@@ -16,11 +16,12 @@ public class Elevator extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	private Victor motor;
-	private DigitalInput bottomLimit;
+	private DigitalInput bottomLimit, topLimit;
 
 	public Elevator() {
 		motor = new Victor(RobotMap.ELEVATOR_MOTOR);
 		bottomLimit = new DigitalInput(RobotMap.BOTTOM_LIMIT);
+		topLimit = new DigitalInput(RobotMap.TOP_LIMIT);
 	}
 
 	public void setPower(double power) {
@@ -60,7 +61,7 @@ public class Elevator extends Subsystem {
 		power = Math.min(1.0, power);
 		power = Math.max(-1.0, power);
 		
-		if((!bottomLimit.get() && power > 0)) {
+		if((!bottomLimit.get() && power > 0) || (!topLimit.get() && power < 0)) {
 			return 0.0; 
 		} 
 		else { 

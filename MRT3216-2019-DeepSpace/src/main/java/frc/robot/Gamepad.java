@@ -20,8 +20,8 @@ public class Gamepad extends Joystick {
 	/** Axis Mapping for a single joystick ************************************/
 	public static final int RIGHT_JOY_X_AXIS = 4;
 	public static final int RIGHT_JOY_Y_AXIS = 5;
-	public static final int RIGHT_TRIGGER = 2;
-	public static final int LEFT_TRIGGER = 3;
+	public static final int RIGHT_TRIGGER = 3;
+	public static final int LEFT_TRIGGER = 2;
 	public static final int LEFT_JOY_X_AXIS = 0;
 	public static final int LEFT_JOY_Y_AXIS = 1;
 

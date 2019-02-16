@@ -55,7 +55,6 @@ public class Drive extends Command {
 	private void execute(double throttle, double turn) {
 		double dt = timer.get();
 		timer.reset();
-
 		s_Drivetrain.setDrive(throttle, turn);
 
 	}

@@ -18,7 +18,7 @@ public class EjectCargo extends Command {
 
   public EjectCargo() {
     // Use requires() here to declare subsystem dependencies
-    requires(intake);
+    //requires(intake);
   }
 
   // Called just before this Command runs the first time
@@ -29,7 +29,7 @@ public class EjectCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.setIntakePower(SB.EJECT_SPEED);
+    //intake.setIntakePower(SB.EJECT_SPEED);
     intake.setEjectPower(SB.EJECT_SPEED);
   }
 

@@ -16,7 +16,6 @@ public class LiftFront extends InstantCommand {
   private boolean up;
 
   public LiftFront(boolean up) {
-    requires(lift);
     this.up = up;
   }
 

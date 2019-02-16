@@ -29,12 +29,14 @@ public class RobotMap {
 	public static final int USB_CONTROL_STICK = 1;
 
 	// Digital Input
-	public static final int BOTTOM_LIMIT = 9;
+	public static final int BOTTOM_LIMIT = 8;
+	public static final int TOP_LIMIT = 9;
 
 	// PWM Ports
 	public static final int ELEVATOR_MOTOR = 7;
-	public static final int INTAKE_MOTOR = 3;//?
-	public static final int EJECT_MOTOR = 4;//?
+	public static final int INTAKE_MOTOR = 8;
+	public static final int EJECT_MOTOR = 9;
+	public static final int LIFT_MOTOR = 0;
 
 	// CAN Device IDS
 	public static final int CAN_LEFT_TALONSRX = 1;
@@ -43,14 +45,14 @@ public class RobotMap {
 	public static final int CAN_RIGHT_VICTORSPX = 0;
 
 	// PCM Ports
-	public static final int PANEL_RELEASE_C = 0;//0
-	public static final int PANEL_RELEASE_O = 1;//0
-	public static final int FRONT_LIFT_C = 4;//0
-	public static final int FRONT_LIFT_O = 5;//0
-	public static final int REAR_LIFT_C = 2;//1
-	public static final int REAR_LIFT_O = 3;//1
-	public static final int PANEL_EXTEND_C = 2;//0
-	public static final int PANEL_EXTEND_O = 3;//0
+	public static final int PANEL_RELEASE_C = 3;//0
+	public static final int PANEL_RELEASE_O = 2;//0
+	public static final int FRONT_LIFT_C = 5;//0
+	public static final int FRONT_LIFT_O = 4;//0
+	public static final int REAR_LIFT_C = 3;//1
+	public static final int REAR_LIFT_O = 2;//1
+	public static final int PANEL_EXTEND_C = 1;//0
+	public static final int PANEL_EXTEND_O = 0;//0
 	public static final int SHIFTER_LOW =4;//1
 	public static final int SHIFTER_HIGH =5;//1
 }

@@ -36,6 +36,7 @@ public class ShuffleboardController {
         SmartDashboard.putNumber(ntTAPE_SCALER, TAPE_SCALER);
         SmartDashboard.putNumber(ntINTAKE_SPEED, INTAKE_SPEED);
         SmartDashboard.putNumber(ntEJECT_SPEED, EJECT_SPEED);
+        SmartDashboard.putNumber(ntINTAKE_SPEED, INTAKE_SPEED);
     }
 
     
@@ -49,6 +50,9 @@ public class ShuffleboardController {
         //Driving Constants
         public final String ntACCELERATION_MAX = "acceleration_max";
         public final String ntDRIVE_STRAIGHT_KP = "drive_straight_kp";
+
+        public final String ntDRIVE_MODE = "drive_mode";
+
         // Control Constants
         public String ntJOYSTICK_SENSITIVITY = "joystick_sensitivity";
         public String ntJOYSTICK_DEADZONE = "joystick_deadzone";
@@ -71,6 +75,8 @@ public class ShuffleboardController {
         // Driving Constants
         public double ACCELERATION_MAX = 3.0;//mTable.getEntry(ntACCELERATION_MAX).getDouble(3.0); // TODO: Calculate new max for new robot
         public double DRIVE_STRAIGHT_KP = 0.01;//mTable.getEntry(ntDRIVE_STRAIGHT_KP).getDouble(0.01);; // TODO: Tune new robot
+
+        public boolean DRIVE_MODE = false;
 
         // Control Constants
         public double JOYSTICK_SENSITIVITY = 0.8;//mTable.getEntry(ntJOYSTICK_SENSITIVITY).getDouble(0.8);

@@ -8,34 +8,36 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.subsystems.Lifter;
 
-public class LiftRear extends Command {
+public class LiftDrive extends Command {
+  private OI oi = Robot.mOI;
   private Lifter lift = Robot.sLift;
-  private boolean up;
-
-  public LiftRear(boolean up) {
+  
+  public LiftDrive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    this.up = up;
+    requires(lift);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    lift.raiseRear(up);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double throttle = oi.getLeftTrigger();
+    lift.driveLift(throttle);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

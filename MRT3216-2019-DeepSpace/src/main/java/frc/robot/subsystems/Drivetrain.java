@@ -5,12 +5,16 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Robot;
 import frc.robot.commands.Drive;
 import frc.robot.settings.RobotMap;
+import frc.robot.settings.ShuffleboardController;
 
 /**
  *
@@ -29,6 +33,8 @@ public class Drivetrain extends Subsystem {
 	Timer timer = new Timer();
 	private TalonSRX leftMaster, rightMaster;
 	private VictorSPX leftSlave, rightSlave;
+	DifferentialDrive m_drive;
+	private ShuffleboardController SB = ShuffleboardController.getInstance();
 
 	public Drivetrain() {
 		// log.add("Constructor", LOG_LEVEL);
@@ -61,8 +67,12 @@ public class Drivetrain extends Subsystem {
 	/** Methods for setting the motors *************************************/
 
 	public void setDrive(double forward, double turn) {
-		leftMaster.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, +turn);
-		rightMaster.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, -turn);
+		if(SB.DRIVE_MODE) {
+			m_drive.arcadeDrive(forward, turn);
+		} else {
+			leftMaster.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, +turn);
+			rightMaster.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, -turn);
+		}
 	}
 
 	public void driveStraight(double power) {
