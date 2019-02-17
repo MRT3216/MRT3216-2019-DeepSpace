@@ -34,7 +34,7 @@ import frc.robot.subsystems.Shifters;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static BOT currentBot = BOT.TESTBOT;
+  public static BOT currentBot = BOT.MAINBOT;
   public static Drivetrain sDrivetrain = new Drivetrain();
   public static Elevator sElevator = new Elevator();
   public static Intake sIntake = new Intake();
@@ -42,6 +42,7 @@ public class Robot extends TimedRobot {
   public static Shifters sShifters = new Shifters();
   public static Lifter sLift = new Lifter();
   public static Compressor sCompressor;
+  public static boolean pressureSwitch;
   public static OI mOI;
   public static ShuffleboardController mSBController;
   public static SerialPort arduino;
@@ -62,6 +63,7 @@ public class Robot extends TimedRobot {
     mOI = new OI();
     sCompressor = new Compressor(1);
     sCompressor.setClosedLoopControl(true);
+    pressureSwitch = sCompressor.getPressureSwitchValue();
     sShifters.shift(true);
     sLift.raiseFront(false);
     sLift.raiseRear(false);
@@ -90,6 +92,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    pressureSwitch = sCompressor.getPressureSwitchValue();
     mSBController.update();
     updateArduino();
   }

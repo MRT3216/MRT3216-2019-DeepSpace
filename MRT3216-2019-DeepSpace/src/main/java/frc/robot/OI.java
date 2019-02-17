@@ -62,10 +62,14 @@ public class OI {
     controlStick = new ControlStick(RobotMap.USB_CONTROL_STICK);
     controlStick.Trigger.whileHeld(new EjectCargo());// not sure the difference between whileHeld() and whileActive()
                                                       // Java Docs aren't too helpful or clear
-    controlStick.button2.whileHeld(new IntakeCargo());
-    controlStick.button5.whenPressed(new GrabPanel(true));
-    controlStick.button3.whenPressed(new GrabPanel(false));
-    controlStick.button6.whenPressed(new PopPanel());
+    controlStick.button2.whileHeld(new IntakeCargo(true));
+    //controlStick.button5.whenPressed(new GrabPanel(true));
+    //controlStick.button3.whenPressed(new GrabPanel(false));
+    //controlStick.button6.whenPressed(new PopPanel());
+    controlStick.button5.whenPressed(new PopPanel());
+    controlStick.button3.whileHeld(new IntakeCargo(false));;
+    controlStick.button6.whenPressed(new GrabPanel(true));
+    controlStick.button4.whenPressed(new GrabPanel(false));
     gamepad.RB.whileHeld(new VisionDrive());
     gamepad.A.whenPressed(new Shift(false));
     gamepad.B.whenPressed(new Shift(true));

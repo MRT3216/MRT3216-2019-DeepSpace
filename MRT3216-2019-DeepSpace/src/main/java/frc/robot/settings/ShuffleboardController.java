@@ -10,6 +10,7 @@ package frc.robot.settings;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 
 /**
  * Add your docs here.
@@ -37,6 +38,7 @@ public class ShuffleboardController {
         SmartDashboard.putNumber(ntINTAKE_SPEED, INTAKE_SPEED);
         SmartDashboard.putNumber(ntEJECT_SPEED, EJECT_SPEED);
         SmartDashboard.putNumber(ntINTAKE_SPEED, INTAKE_SPEED);
+        SmartDashboard.putBoolean(ntPRESSURE_SWITCH, Robot.pressureSwitch);
     }
 
     
@@ -71,6 +73,9 @@ public class ShuffleboardController {
         public String ntTAPE_kI = "tape_ki";
         public String ntTAPE_SCALER = "tape_scaler";
 
+        //Compressor
+        public String ntPRESSURE_SWITCH = "pressure_switch";
+
     /*** These are all the values for the NetworkTables ****/
         // Driving Constants
         public double ACCELERATION_MAX = 3.0;//mTable.getEntry(ntACCELERATION_MAX).getDouble(3.0); // TODO: Calculate new max for new robot
@@ -84,8 +89,8 @@ public class ShuffleboardController {
         public double JOYSTICK_DEADZONE = 0.05;//mTable.getEntry(ntJOYSTICK_DEADZONE).getDouble(0.05);
 
         // Intake Constants
-        public double INTAKE_SPEED = 0.25;//mTable.getEntry(ntINTAKE_SPEED).getDouble(0.5);;
-        public double EJECT_SPEED = 0.25;//mTable.getEntry(ntEJECT_SPEED).getDouble(0.5);;
+        public double INTAKE_SPEED = 0.4;//mTable.getEntry(ntINTAKE_SPEED).getDouble(0.5);;
+        public double EJECT_SPEED = 0.6;//mTable.getEntry(ntEJECT_SPEED).getDouble(0.5);;
 
         // Parking Settings
         //public double PISTON_SPEEDS = 0.05;
@@ -114,6 +119,7 @@ public class ShuffleboardController {
             TAPE_SCALER = SmartDashboard.getNumber(ntTAPE_SCALER, TAPE_SCALER);
             // PISTON_SPEEDS = SmartDashboard.getNumber(ntPISTON_SPEED, PISTON_SPEEDS);
             SmartDashboard.putBoolean("Green Ring", SmartDashboard.getBoolean(ntVISION_RING, false));
+            SmartDashboard.putBoolean(ntPRESSURE_SWITCH, Robot.pressureSwitch);
             //SmartDashboard.putNumber("PSpeeds", SmartDashboard.getNumber(ntPISTON_SPEED, 0.05));
         }
 

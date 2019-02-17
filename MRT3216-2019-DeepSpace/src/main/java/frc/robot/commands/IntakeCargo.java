@@ -15,9 +15,12 @@ import frc.robot.subsystems.Intake;
 public class IntakeCargo extends Command {
   public static ShuffleboardController SB = Robot.mSBController;
   private Intake intake = Robot.sIntake;
-  public IntakeCargo() {
+  private boolean forward;
+
+  public IntakeCargo(boolean forward) {
     // Use requires() here to declare subsystem dependencies
     requires(intake);
+    this.forward = forward;
   }
 
   // Called just before this Command runs the first time
@@ -28,7 +31,12 @@ public class IntakeCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.setIntakePower(SB.INTAKE_SPEED);
+    if(forward) {
+      intake.setIntakePower(SB.INTAKE_SPEED);
+    }
+    else {
+      intake.setEjectPower(-1 * SB.INTAKE_SPEED);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

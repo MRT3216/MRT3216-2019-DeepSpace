@@ -31,7 +31,7 @@ public class LiftDrive extends Command {
   @Override
   protected void execute() {
     double throttle = oi.getLeftTrigger();
-    lift.driveLift(throttle);
+    lift.driveLift(-1 * throttle);
   }
 
   // Make this return true when this Command no longer needs to run execute()
