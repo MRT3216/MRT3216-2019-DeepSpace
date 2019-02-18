@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.settings.ShuffleboardController;
 import frc.robot.settings.State.BOT;
+import frc.robot.subsystems.ADIS16448_IMU;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -35,6 +36,7 @@ import frc.robot.subsystems.Shifters;
  */
 public class Robot extends TimedRobot {
   public static BOT currentBot = BOT.MAINBOT;
+  public static ADIS16448_IMU imu;
   public static Drivetrain sDrivetrain = new Drivetrain();
   public static Elevator sElevator = new Elevator();
   public static Intake sIntake = new Intake();
@@ -61,6 +63,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     mSBController = ShuffleboardController.getInstance();
     mOI = new OI();
+    imu = new ADIS16448_IMU();
+		imu.calibrate();
+		imu.reset();
     sCompressor = new Compressor(1);
     sCompressor.setClosedLoopControl(true);
     pressureSwitch = sCompressor.getPressureSwitchValue();

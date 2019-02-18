@@ -49,6 +49,7 @@ public class IntakeCargo extends Command {
   @Override
   protected void end() {
     intake.stopIntake();
+    intake.stopEject();
   }
 
   // Called when another command which requires one or more of the same
@@ -56,11 +57,13 @@ public class IntakeCargo extends Command {
   @Override
   protected void interrupted() {
     intake.stopIntake();
+    intake.stopEject();
   }
 
   @Override
   public void cancel() {
     super.cancel();
     intake.stopIntake();
+    intake.stopEject();
   }
 }

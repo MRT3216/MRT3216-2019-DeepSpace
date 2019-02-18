@@ -60,18 +60,19 @@ public class Elevator extends Subsystem {
 	private double safetyCheck(double power) {
 		power = Math.min(1.0, power);
 		power = Math.max(-1.0, power);
+		power = heightCheck(power);
+		return power;
 		
+
+	}
+
+	private double heightCheck(double power) {
 		if((!bottomLimit.get() && power > 0) || (!topLimit.get() && power < 0)) {
 			return 0.0; 
 		} 
 		else { 
 			return power; 
-		}
-	}
-
-	private double heightCheck(double power) {
-		return power; // TODO: implement top and bottom limit switches and check to make sure elevator
-						// doesn't move past them.
+		} 
 	}
 
 	@Override
