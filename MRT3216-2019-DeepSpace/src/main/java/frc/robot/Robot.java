@@ -26,6 +26,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lifter;
 import frc.robot.subsystems.PanelManipulator;
 import frc.robot.subsystems.Shifters;
+import frc.robot.subsystems.Photon;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -51,6 +52,7 @@ public class Robot extends TimedRobot {
   public static Timer arduinoTimer;
   public static DriverStation ds;
   public static DigitalInput dI;
+  public static Photon photonRing;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -80,6 +82,10 @@ public class Robot extends TimedRobot {
     arduinoTimer = new Timer();
     arduinoTimer.start();
     ds = DriverStation.getInstance();
+
+    photonRing = new Photon();
+    photonRing.SetNumberOfLEDs(1, 16); //Strip 1, with 27 LEDs
+    photonRing.setAnimation(1, Photon.Animation.CYLON_DUAL, Photon.Color.BLUE, Photon.Color.PURPLE, 2);
 
     // m_chooser.addDefault("Default Auto", new ExampleCommand());
     // chooser.addObject("My Auto", new MyAutoCommand());
