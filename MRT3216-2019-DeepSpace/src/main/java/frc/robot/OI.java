@@ -104,7 +104,7 @@ public class OI {
   // Control Stick Functions
   public double getStickY() {
     double joystickValue = controlStick.getRawAxis(ControlStick.JOYSTICK_Y_AXIS);
-    // TODO - add checkDeadZone (if needed)
+    joystickValue = checkDeadZone(joystickValue);
     // log.add("StickY: " + joystickValue, LOG_LEVEL);
     return joystickValue;
   }
