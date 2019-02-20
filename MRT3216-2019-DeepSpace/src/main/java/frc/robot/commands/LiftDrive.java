@@ -13,41 +13,41 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Lifter;
 
 public class LiftDrive extends Command {
-  private OI oi = Robot.mOI;
-  private Lifter lift = Robot.sLift;
-  
-  public LiftDrive() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(lift);
-  }
+    private OI oi = Robot.mOI;
+    private Lifter lift = Robot.sLift;
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-  }
+    public LiftDrive() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+        requires(lift);
+    }
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-    double throttle = oi.getLeftTrigger();
-    lift.driveLift(-1 * throttle);
-  }
+    // Called just before this Command runs the first time
+    @Override
+    protected void initialize() {
+    }
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+    // Called repeatedly when this Command is scheduled to run
+    @Override
+    protected void execute() {
+        double throttle = oi.getLeftTrigger();
+        lift.driveLift(-1 * throttle);
+    }
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-  }
+    // Make this return true when this Command no longer needs to run execute()
+    @Override
+    protected boolean isFinished() {
+        return false;
+    }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-  }
+    // Called once after isFinished returns true
+    @Override
+    protected void end() {
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    @Override
+    protected void interrupted() {
+    }
 }

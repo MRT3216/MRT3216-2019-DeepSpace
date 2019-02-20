@@ -12,18 +12,18 @@ import frc.robot.Robot;
 import frc.robot.subsystems.PanelManipulator;
 
 public class ReleasePanel extends InstantCommand {
-  private boolean extend;
-  private PanelManipulator sPanelManipulator = Robot.sPanelManipulator;
+    private boolean extend;
+    private PanelManipulator sPanelManipulator = Robot.sPanelManipulator;
 
-  public ReleasePanel(boolean extend) {
-    super();
-    requires(sPanelManipulator);
-    // Use requires() here to declare subsystem dependencies
-    this.extend = extend;
-  }
+    public ReleasePanel(boolean extend) {
+        super();
+        requires(sPanelManipulator);
+        // Use requires() here to declare subsystem dependencies
+        this.extend = extend;
+    }
 
-  @Override
-  protected void initialize() {
-    sPanelManipulator.releasePanel(extend);
-  }
+    @Override
+    protected void initialize() {
+        sPanelManipulator.releasePanel(extend);
+    }
 }

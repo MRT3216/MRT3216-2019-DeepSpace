@@ -13,51 +13,51 @@ import frc.robot.settings.ShuffleboardController;
 import frc.robot.subsystems.Intake;
 
 public class EjectCargo extends Command {
-  private Intake intake = Robot.sIntake;
-  public static ShuffleboardController SB = Robot.mSBController;
+    private Intake intake = Robot.sIntake;
+    public static ShuffleboardController SB = Robot.mSBController;
 
-  public EjectCargo() {
-    // Use requires() here to declare subsystem dependencies
-    //requires(intake);
-  }
+    public EjectCargo() {
+        // Use requires() here to declare subsystem dependencies
+        // requires(intake);
+    }
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-  }
+    // Called just before this Command runs the first time
+    @Override
+    protected void initialize() {
+    }
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-    //intake.setIntakePower(SB.EJECT_SPEED);
-    intake.setEjectPower(SB.EJECT_SPEED);
-  }
+    // Called repeatedly when this Command is scheduled to run
+    @Override
+    protected void execute() {
+        // intake.setIntakePower(SB.EJECT_SPEED);
+        intake.setEjectPower(SB.EJECT_SPEED);
+    }
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+    // Make this return true when this Command no longer needs to run execute()
+    @Override
+    protected boolean isFinished() {
+        return false;
+    }
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-    intake.stopIntake();
-    intake.stopEject();
-  }
+    // Called once after isFinished returns true
+    @Override
+    protected void end() {
+        intake.stopIntake();
+        intake.stopEject();
+    }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-    intake.stopIntake();
-    intake.stopEject();
-  }
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    @Override
+    protected void interrupted() {
+        intake.stopIntake();
+        intake.stopEject();
+    }
 
-  @Override
-  public void cancel() {
-    super.cancel();
-    intake.stopIntake();
-    intake.stopEject();
-  }
+    @Override
+    public void cancel() {
+        super.cancel();
+        intake.stopIntake();
+        intake.stopEject();
+    }
 }

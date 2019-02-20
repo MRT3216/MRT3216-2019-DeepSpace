@@ -15,30 +15,29 @@ import frc.robot.settings.RobotMap;
  * Add your docs here.
  */
 public class Shifters extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  private DoubleSolenoid shifter;
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+    private DoubleSolenoid shifter;
 
-  private final DoubleSolenoid.Value high = DoubleSolenoid.Value.kForward;
-	private final DoubleSolenoid.Value low = DoubleSolenoid.Value.kReverse;
-  
-  public Shifters() {
-    System.out.println("Shifters started");
-    shifter = new DoubleSolenoid(1, RobotMap.SHIFTER_HIGH, RobotMap.SHIFTER_LOW);
-    System.out.println("Shifters Finished");
-  }
+    private final DoubleSolenoid.Value high = DoubleSolenoid.Value.kForward;
+    private final DoubleSolenoid.Value low = DoubleSolenoid.Value.kReverse;
 
-  public void shift(boolean high) {
-    if(high) {
-      shifter.set(this.high);
+    public Shifters() {
+        System.out.println("Shifters started");
+        shifter = new DoubleSolenoid(1, RobotMap.SHIFTER_HIGH, RobotMap.SHIFTER_LOW);
+        System.out.println("Shifters Finished");
     }
-    else {
-      shifter.set(this.low);
-    }
-  }
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-  }
+    public void shift(boolean high) {
+        if (high) {
+            shifter.set(this.high);
+        } else {
+            shifter.set(this.low);
+        }
+    }
+
+    @Override
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+    }
 }

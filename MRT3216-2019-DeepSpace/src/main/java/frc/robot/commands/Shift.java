@@ -12,20 +12,20 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Shifters;
 
 public class Shift extends InstantCommand {
-  private boolean high;
-  private Shifters shifter = Robot.sShifters;
+    private boolean high;
+    private Shifters shifter = Robot.sShifters;
 
-  public Shift(boolean high) {
-    super();
-    this.high = high;
-    requires(shifter);
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-  }
+    public Shift(boolean high) {
+        super();
+        this.high = high;
+        requires(shifter);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    }
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-    shifter.shift(high);
-  }
+    // Called just before this Command runs the first time
+    @Override
+    protected void initialize() {
+        shifter.shift(high);
+    }
 }
