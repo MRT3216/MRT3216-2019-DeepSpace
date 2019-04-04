@@ -53,9 +53,9 @@ public class Robot extends TimedRobot {
     public static Photon photon;
     public final int ringStripNum = 1;
     public final int ringNumLEDs = 16;
-    public final int frameStripNum = 2;
-    public final int frameNumLEDs = 33;
-    public final int intakeStripNum = 5;
+    public final int frameStripNum = 5;
+    public final int frameNumLEDs = 35;
+    public final int intakeStripNum = 2;
     public final int intakeNumLEDs = 24;
     public final int coverStripNum = 6;
     public final int coverNumLEDs = 29;
@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
 
         // Electronics Cover LEDS
         photon.SetNumberOfLEDs(coverStripNum, coverNumLEDs);
-        photon.setAnimation(coverStripNum, Photon.Animation.PULSE_DUAL, Photon.Color.ORANGE, Photon.Color.BLUE);
+        photon.setAnimation(coverStripNum, Photon.Animation.BOUNCE_BAR, Photon.Color.ORANGE, Photon.Color.BLUE);
     }
 
     /**
