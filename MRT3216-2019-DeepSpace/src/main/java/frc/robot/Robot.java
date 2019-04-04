@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -48,11 +47,18 @@ public class Robot extends TimedRobot {
     public static boolean pressureSwitch;
     public static OI mOI;
     public static ShuffleboardController mSBController;
-    public static SerialPort arduino;
     public static Timer arduinoTimer;
     public static DriverStation ds;
     public static DigitalInput dI;
-    public static Photon photonRing;
+    public static Photon photon;
+    public final int ringStripNum = 1;
+    public final int ringNumLEDs = 16;
+    public final int frameStripNum = 2;
+    public final int frameNumLEDs = 33;
+    public final int intakeStripNum = 5;
+    public final int intakeNumLEDs = 24;
+    public final int coverStripNum = 6;
+    public final int coverNumLEDs = 29;
 
     Command m_autonomousCommand;
     SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -74,22 +80,27 @@ public class Robot extends TimedRobot {
         sShifters.shift(true);
         sLift.raiseFront(false);
         sLift.raiseRear(false);
-        try {
-            arduino = new SerialPort(115200, SerialPort.Port.kUSB);
-        } catch (Exception e) {
-        }
 
         arduinoTimer = new Timer();
         arduinoTimer.start();
         ds = DriverStation.getInstance();
 
-        photonRing = new Photon();
-        photonRing.SetNumberOfLEDs(1, 4); // Strip 1, with 27 LEDs
-        photonRing.setAnimation(2, Photon.Animation.CYLON_DUAL, Photon.Color.BLUE, Photon.Color.PURPLE, 2);
+        photon = new Photon();
+        // Ring for Vision
+        photon.SetNumberOfLEDs(ringStripNum, ringNumLEDs);
+        photon.setAnimation(ringStripNum, Photon.Animation.SOLID, Photon.Color.GREEN);
 
-        // m_chooser.addDefault("Default Auto", new ExampleCommand());
-        // chooser.addObject("My Auto", new MyAutoCommand());
-        // SmartDashboard.putData("Auto mode", m_chooser);
+        // Intake LEDS
+        photon.SetNumberOfLEDs(intakeStripNum, intakeNumLEDs);
+        photon.setAnimation(intakeStripNum, Photon.Animation.CYLON, Photon.Color.ORANGE, 2);
+
+        // Frame LEDS
+        photon.SetNumberOfLEDs(frameStripNum, frameNumLEDs);
+        photon.setAnimation(frameStripNum, Photon.Animation.PULSE_DUAL, Photon.Color.ORANGE, Photon.Color.BLUE);
+
+        // Electronics Cover LEDS
+        photon.SetNumberOfLEDs(coverStripNum, coverNumLEDs);
+        photon.setAnimation(coverStripNum, Photon.Animation.PULSE_DUAL, Photon.Color.ORANGE, Photon.Color.BLUE);
     }
 
     /**
@@ -105,7 +116,6 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() {
         pressureSwitch = sCompressor.getPressureSwitchValue();
         mSBController.update();
-        updateArduino();
     }
 
     /**
@@ -184,35 +194,5 @@ public class Robot extends TimedRobot {
     @Override
     public void testPeriodic() {
         sDrivetrain.setDrive(.5, 0);
-    }
-
-    public void updateArduino() {
-        try {
-            if (arduinoTimer.get() > mSBController.ARDUINO_TIMER) { // send periodically to avoid buffer overflows
-                byte mode1 = 0; //////// structure:
-                                //////// 0b<red><blue><fms><auton><teleop><disabled><enabled><attached>
-                if (ds.getAlliance() == DriverStation.Alliance.Red)
-                    mode1 |= 0b10000000; // on the red alliance
-                if (mSBController.VISION_RING)
-                    mode1 |= 0b01000000; // blue alliance
-                if (ds.isAutonomous() && ds.isEnabled())
-                    mode1 |= 0b00100000; // auton mode
-                if (ds.isOperatorControl() && ds.isEnabled())
-                    mode1 |= 0b00010000; // teleop mode
-                if (false)
-                    /* front_vision + 0.5 > matchTimer.get()) */ mode1 |= 0b00001000; // enable front vision leds
-                // if (rear_vision + 0.5 > matchTimer.get()) mode1 |= 0b00000100; // enable rear
-                // vision leds
-                if (ds.isDisabled())
-                    mode1 |= 0b00000010; // tell if robot is disabled so we can rainbow at idle
-
-                byte[] mode2 = { mode1 }; // needs to be a list
-                arduino.write(mode2, 1); // send the byte of status over
-
-                arduinoTimer.reset(); // reset the timer so we can
-                arduinoTimer.start(); // probably don't need to do this
-            }
-        } catch (RuntimeException a) {
-        }
     }
 }
