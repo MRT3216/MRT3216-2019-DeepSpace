@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -51,7 +50,15 @@ public class Robot extends TimedRobot {
     public static Timer arduinoTimer;
     public static DriverStation ds;
     public static DigitalInput dI;
-    public static Photon photonRing;
+    public static Photon photon;
+    public final int ringStripNum = 1;
+    public final int ringNumLEDs = 16;
+    public final int frameStripNum = 2;
+    public final int frameNumLEDs = 33;
+    public final int intakeStripNum = 5;
+    public final int intakeNumLEDs = 24;
+    public final int coverStripNum = 6;
+    public final int coverNumLEDs = 29;
 
     Command m_autonomousCommand;
     SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -78,13 +85,22 @@ public class Robot extends TimedRobot {
         arduinoTimer.start();
         ds = DriverStation.getInstance();
 
-        photonRing = new Photon();
-        photonRing.SetNumberOfLEDs(1, 4); // Strip 1, with 27 LEDs
-        photonRing.setAnimation(2, Photon.Animation.CYLON_DUAL, Photon.Color.BLUE, Photon.Color.PURPLE, 2);
+        photon = new Photon();
+        // Ring for Vision
+        photon.SetNumberOfLEDs(ringStripNum, ringNumLEDs);
+        photon.setAnimation(ringStripNum, Photon.Animation.SOLID, Photon.Color.GREEN);
 
-        // m_chooser.addDefault("Default Auto", new ExampleCommand());
-        // chooser.addObject("My Auto", new MyAutoCommand());
-        // SmartDashboard.putData("Auto mode", m_chooser);
+        // Intake LEDS
+        photon.SetNumberOfLEDs(intakeStripNum, intakeNumLEDs);
+        photon.setAnimation(intakeStripNum, Photon.Animation.CYLON, Photon.Color.ORANGE, 2);
+
+        // Frame LEDS
+        photon.SetNumberOfLEDs(frameStripNum, frameNumLEDs);
+        photon.setAnimation(frameStripNum, Photon.Animation.PULSE_DUAL, Photon.Color.ORANGE, Photon.Color.BLUE);
+
+        // Electronics Cover LEDS
+        photon.SetNumberOfLEDs(coverStripNum, coverNumLEDs);
+        photon.setAnimation(coverStripNum, Photon.Animation.PULSE_DUAL, Photon.Color.ORANGE, Photon.Color.BLUE);
     }
 
     /**
