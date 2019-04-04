@@ -36,7 +36,7 @@ import frc.robot.subsystems.Photon;
  * project.
  */
 public class Robot extends TimedRobot {
-    public static BOT currentBot = BOT.TESTBOT;
+    public static BOT currentBot = BOT.MAINBOT;
     public static ADIS16448_IMU imu;
     public static Drivetrain sDrivetrain = new Drivetrain();
     public static Elevator sElevator = new Elevator();

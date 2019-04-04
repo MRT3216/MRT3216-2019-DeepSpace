@@ -116,7 +116,7 @@ public class ShuffleboardController {
         // PISTON_SPEEDS = SmartDashboard.getNumber(ntPISTON_SPEED, PISTON_SPEEDS);
         SmartDashboard.putBoolean("Green Ring", SmartDashboard.getBoolean(ntVISION_RING, false));
         SmartDashboard.putBoolean(ntPRESSURE_SWITCH, Robot.pressureSwitch);
-        SmartDashboard.putData("Gyro", Robot.imu);
+        //SmartDashboard.putData("Gyro", Robot.imu);
         // SmartDashboard.putNumber("PSpeeds", SmartDashboard.getNumber(ntPISTON_SPEED,
         // 0.05));
     }
