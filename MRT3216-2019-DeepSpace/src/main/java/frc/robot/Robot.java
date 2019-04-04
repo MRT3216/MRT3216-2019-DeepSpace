@@ -88,19 +88,14 @@ public class Robot extends TimedRobot {
         photon = new Photon();
         // Ring for Vision
         photon.SetNumberOfLEDs(ringStripNum, ringNumLEDs);
-        photon.setAnimation(ringStripNum, Photon.Animation.SOLID, Photon.Color.GREEN);
-
         // Intake LEDS
         photon.SetNumberOfLEDs(intakeStripNum, intakeNumLEDs);
-        photon.setAnimation(intakeStripNum, Photon.Animation.CYLON, Photon.Color.ORANGE, 2);
-
         // Frame LEDS
         photon.SetNumberOfLEDs(frameStripNum, frameNumLEDs);
-        photon.setAnimation(frameStripNum, Photon.Animation.PULSE_DUAL, Photon.Color.ORANGE, Photon.Color.BLUE);
-
         // Electronics Cover LEDS
         photon.SetNumberOfLEDs(coverStripNum, coverNumLEDs);
-        photon.setAnimation(coverStripNum, Photon.Animation.BOUNCE_BAR, Photon.Color.ORANGE, Photon.Color.BLUE);
+        
+        updateLEDs();
     }
 
     /**
@@ -125,6 +120,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+        updateLEDs();
     }
 
     @Override
@@ -147,6 +143,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         m_autonomousCommand = m_chooser.getSelected();
+        updateLEDs();
 
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -178,6 +175,7 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+        updateLEDs();
     }
 
     /**
@@ -194,5 +192,29 @@ public class Robot extends TimedRobot {
     @Override
     public void testPeriodic() {
         sDrivetrain.setDrive(.5, 0);
+    }
+
+    private void updateLEDs() {
+        if(ds.isDisabled()) {
+            photon.setAnimation(ringStripNum, Photon.Animation.JUGGLE);
+            photon.setAnimation(intakeStripNum, Photon.Animation.PULSE_DUAL, Photon.Color.RED, Photon.Color.BLUE);
+            photon.setAnimation(coverStripNum, Photon.Animation.BOUNCE_BAR_DUAL, Photon.Color.RED, Photon.Color.BLUE);
+            photon.setAnimation(frameStripNum, Photon.Animation.BOUNCE_BAR_DUAL, Photon.Color.BLUE, Photon.Color.BLUE);
+        } else if (ds.getAlliance() == DriverStation.Alliance.Red){
+            photon.setAnimation(ringStripNum, Photon.Animation.SOLID, Photon.Color.GREEN);
+            photon.setAnimation(intakeStripNum, Photon.Animation.SOLID, Photon.Color.RED);
+            photon.setAnimation(coverStripNum, Photon.Animation.SOLID, Photon.Color.RED);
+            photon.setAnimation(frameStripNum, Photon.Animation.SOLID, Photon.Color.RED);
+        } else if (ds.getAlliance() == DriverStation.Alliance.Blue){
+            photon.setAnimation(ringStripNum, Photon.Animation.SOLID, Photon.Color.GREEN);
+            photon.setAnimation(intakeStripNum, Photon.Animation.SOLID, Photon.Color.BLUE);
+            photon.setAnimation(coverStripNum, Photon.Animation.SOLID, Photon.Color.BLUE);
+            photon.setAnimation(frameStripNum, Photon.Animation.SOLID, Photon.Color.BLUE);
+        } else {
+            photon.setAnimation(ringStripNum, Photon.Animation.BLINK_DUAL, Photon.Color.BLUE, Photon.Color.RED);
+            photon.setAnimation(intakeStripNum, Photon.Animation.BLINK_DUAL, Photon.Color.BLUE, Photon.Color.RED);
+            photon.setAnimation(coverStripNum, Photon.Animation.BLINK_DUAL, Photon.Color.BLUE, Photon.Color.RED);
+            photon.setAnimation(frameStripNum, Photon.Animation.BLINK_DUAL, Photon.Color.BLUE, Photon.Color.RED);
+        }
     }
 }
