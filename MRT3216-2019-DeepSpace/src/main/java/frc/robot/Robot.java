@@ -199,7 +199,7 @@ public class Robot extends TimedRobot {
             photon.setAnimation(ringStripNum, Photon.Animation.JUGGLE);
             photon.setAnimation(intakeStripNum, Photon.Animation.PULSE_DUAL, Photon.Color.RED, Photon.Color.BLUE);
             photon.setAnimation(coverStripNum, Photon.Animation.BOUNCE_BAR_DUAL, Photon.Color.RED, Photon.Color.BLUE);
-            photon.setAnimation(frameStripNum, Photon.Animation.BOUNCE_BAR_DUAL, Photon.Color.BLUE, Photon.Color.BLUE);
+            photon.setAnimation(frameStripNum, Photon.Animation.BOUNCE_BAR_DUAL, Photon.Color.RED, Photon.Color.BLUE);
         } else if (ds.getAlliance() == DriverStation.Alliance.Red){
             photon.setAnimation(ringStripNum, Photon.Animation.SOLID, Photon.Color.GREEN);
             photon.setAnimation(intakeStripNum, Photon.Animation.SOLID, Photon.Color.RED);
