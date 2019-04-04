@@ -105,7 +105,6 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() {
         pressureSwitch = sCompressor.getPressureSwitchValue();
         mSBController.update();
-        updateArduino();
     }
 
     /**
@@ -184,35 +183,5 @@ public class Robot extends TimedRobot {
     @Override
     public void testPeriodic() {
         sDrivetrain.setDrive(.5, 0);
-    }
-
-    public void updateArduino() {
-        try {
-            if (arduinoTimer.get() > mSBController.ARDUINO_TIMER) { // send periodically to avoid buffer overflows
-                byte mode1 = 0; //////// structure:
-                                //////// 0b<red><blue><fms><auton><teleop><disabled><enabled><attached>
-                if (ds.getAlliance() == DriverStation.Alliance.Red)
-                    mode1 |= 0b10000000; // on the red alliance
-                if (mSBController.VISION_RING)
-                    mode1 |= 0b01000000; // blue alliance
-                if (ds.isAutonomous() && ds.isEnabled())
-                    mode1 |= 0b00100000; // auton mode
-                if (ds.isOperatorControl() && ds.isEnabled())
-                    mode1 |= 0b00010000; // teleop mode
-                if (false)
-                    /* front_vision + 0.5 > matchTimer.get()) */ mode1 |= 0b00001000; // enable front vision leds
-                // if (rear_vision + 0.5 > matchTimer.get()) mode1 |= 0b00000100; // enable rear
-                // vision leds
-                if (ds.isDisabled())
-                    mode1 |= 0b00000010; // tell if robot is disabled so we can rainbow at idle
-
-                byte[] mode2 = { mode1 }; // needs to be a list
-                arduino.write(mode2, 1); // send the byte of status over
-
-                arduinoTimer.reset(); // reset the timer so we can
-                arduinoTimer.start(); // probably don't need to do this
-            }
-        } catch (RuntimeException a) {
-        }
     }
 }
