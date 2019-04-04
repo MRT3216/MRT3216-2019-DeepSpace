@@ -48,7 +48,6 @@ public class Robot extends TimedRobot {
     public static boolean pressureSwitch;
     public static OI mOI;
     public static ShuffleboardController mSBController;
-    public static SerialPort arduino;
     public static Timer arduinoTimer;
     public static DriverStation ds;
     public static DigitalInput dI;
@@ -74,10 +73,6 @@ public class Robot extends TimedRobot {
         sShifters.shift(true);
         sLift.raiseFront(false);
         sLift.raiseRear(false);
-        try {
-            arduino = new SerialPort(115200, SerialPort.Port.kUSB);
-        } catch (Exception e) {
-        }
 
         arduinoTimer = new Timer();
         arduinoTimer.start();
