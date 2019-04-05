@@ -196,10 +196,10 @@ public class Robot extends TimedRobot {
 
     private void updateLEDs() {
         if(ds.isDisabled()) {
-            photon.setAnimation(ringStripNum, Photon.Animation.JUGGLE);
-            photon.setAnimation(intakeStripNum, Photon.Animation.PULSE_DUAL, Photon.Color.RED, Photon.Color.BLUE);
-            photon.setAnimation(coverStripNum, Photon.Animation.BOUNCE_BAR_DUAL, Photon.Color.RED, Photon.Color.BLUE);
-            photon.setAnimation(frameStripNum, Photon.Animation.BOUNCE_BAR_DUAL, Photon.Color.RED, Photon.Color.BLUE);
+            photon.setAnimation(ringStripNum, Photon.Animation.OFF);
+            photon.setAnimation(intakeStripNum, Photon.Animation.OFF);
+            photon.setAnimation(coverStripNum, Photon.Animation.OFF);
+            photon.setAnimation(frameStripNum, Photon.Animation.OFF);
         } else if (ds.getAlliance() == DriverStation.Alliance.Red){
             photon.setAnimation(ringStripNum, Photon.Animation.SOLID, Photon.Color.GREEN);
             photon.setAnimation(intakeStripNum, Photon.Animation.SOLID, Photon.Color.RED);

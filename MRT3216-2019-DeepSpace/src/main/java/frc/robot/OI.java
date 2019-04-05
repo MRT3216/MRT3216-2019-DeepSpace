@@ -72,12 +72,13 @@ public class OI {
         ;
         controlStick.button6.whenPressed(new GrabPanel(true));
         controlStick.button4.whenPressed(new GrabPanel(false));
-        gamepad.RB.whileHeld(new VisionDrive());
+        gamepad.RightJoy.whileHeld(new VisionDrive());
         gamepad.A.whenPressed(new Shift(false));
         gamepad.B.whenPressed(new Shift(true));
-        gamepad.LB.whenPressed(new LiftBot());
-        gamepad.Y.whenPressed(new LiftFront(false));
-        gamepad.X.whenPressed(new LiftRear(false));
+        gamepad.LB.whenPressed(new LiftRear(true));
+        gamepad.RB.whenPressed(new LiftFront(true));
+        gamepad.X.whenPressed(new LiftFront(false));
+        gamepad.Y.whenPressed(new LiftRear(false));
         System.out.println("OI constructed");
     }
 
