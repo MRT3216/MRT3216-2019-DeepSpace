@@ -196,25 +196,25 @@ public class Robot extends TimedRobot {
 
     private void updateLEDs() {
         if(ds.isDisabled()) {
-            photon.setAnimation(ringStripNum, Photon.Animation.OFF);
+            photon.setAnimation(ringStripNum, Photon.Animation.OFF );
             photon.setAnimation(intakeStripNum, Photon.Animation.OFF);
             photon.setAnimation(coverStripNum, Photon.Animation.OFF);
             photon.setAnimation(frameStripNum, Photon.Animation.OFF);
-        } else if (ds.getAlliance() == DriverStation.Alliance.Red){
+        } else if (ds.isFMSAttached() && ds.getAlliance() == DriverStation.Alliance.Red){
             photon.setAnimation(ringStripNum, Photon.Animation.SOLID, Photon.Color.GREEN);
             photon.setAnimation(intakeStripNum, Photon.Animation.SOLID, Photon.Color.RED);
             photon.setAnimation(coverStripNum, Photon.Animation.SOLID, Photon.Color.RED);
             photon.setAnimation(frameStripNum, Photon.Animation.SOLID, Photon.Color.RED);
-        } else if (ds.getAlliance() == DriverStation.Alliance.Blue){
+        } else if (ds.isFMSAttached() && ds.getAlliance() == DriverStation.Alliance.Blue){
             photon.setAnimation(ringStripNum, Photon.Animation.SOLID, Photon.Color.GREEN);
             photon.setAnimation(intakeStripNum, Photon.Animation.SOLID, Photon.Color.BLUE);
             photon.setAnimation(coverStripNum, Photon.Animation.SOLID, Photon.Color.BLUE);
             photon.setAnimation(frameStripNum, Photon.Animation.SOLID, Photon.Color.BLUE);
         } else {
-            photon.setAnimation(ringStripNum, Photon.Animation.BLINK_DUAL, Photon.Color.BLUE, Photon.Color.RED);
-            photon.setAnimation(intakeStripNum, Photon.Animation.BLINK_DUAL, Photon.Color.BLUE, Photon.Color.RED);
-            photon.setAnimation(coverStripNum, Photon.Animation.BLINK_DUAL, Photon.Color.BLUE, Photon.Color.RED);
-            photon.setAnimation(frameStripNum, Photon.Animation.BLINK_DUAL, Photon.Color.BLUE, Photon.Color.RED);
+            photon.setAnimation(ringStripNum, Photon.Animation.CYLON_DUAL, Photon.Color.BLUE, Photon.Color.RED);
+            photon.setAnimation(intakeStripNum, Photon.Animation.OFF);
+            photon.setAnimation(coverStripNum, Photon.Animation.OFF);
+            photon.setAnimation(frameStripNum, Photon.Animation.OFF);
         }
     }
 }
